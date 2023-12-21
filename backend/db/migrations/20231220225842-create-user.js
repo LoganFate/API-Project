@@ -28,6 +28,14 @@ module.exports = {
         type: Sequelize.STRING.BINARY,
         allowNull: false
       },
+      firstName: { // Add firstName field
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      lastName: { // Add lastName field
+        type: Sequelize.STRING,
+        allowNull: false
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
