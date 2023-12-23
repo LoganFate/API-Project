@@ -18,15 +18,38 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       },
-      // Add 4 more review entries
-      // {
-      //   spotId: X,
-      //   userId: Y,
-      //   review: 'Your review',
-      //   stars: Z,
-      //   createdAt: new Date(),
-      //   updatedAt: new Date()
-      // },
+      {
+        spotId: 2, // Replace with actual spot IDs
+        userId: 2, // Replace with actual user IDs
+        review: 'Not so great place!',
+        stars: 2,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        spotId: 3, // Replace with actual spot IDs
+        userId: 3, // Replace with actual user IDs
+        review: 'It was alright.',
+        stars: 3.5,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        spotId: 4, // Replace with actual spot IDs
+        userId: 4, // Replace with actual user IDs
+        review: 'Amazing, but a lot of noise when trying to sleep at night.',
+        stars: 4,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        spotId: 5, // Replace with actual spot IDs
+        userId: 5, // Replace with actual user IDs
+        review: 'The worst place in the entire universe.',
+        stars: 1,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
     ], options);
   },
 

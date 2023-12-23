@@ -39,6 +39,47 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       },
+      {
+        ownerId: 3,
+        address: '1756 Silk Road',
+        city: 'Manhattan',
+        state: 'New York',
+        country: 'United States',
+        lat: 956.148,
+        lng: -630.419,
+        name: 'Demo Spot 3',
+        description: 'An absolutely magnificent demo spot',
+        price: 3000,
+        createdAt: new Date(),
+        updatedAt: new Date
+      },
+      {
+      ownerId: 4,
+      address: '8936 Random Spot Drive',
+      city: 'NoName',
+      state: 'UK',
+      country: 'Great Britain',
+      lat: 467.184,
+      lng: -186.629,
+      name: 'Demo Spot 4',
+      description: 'No one knows of this spot, very secluded',
+      price: 500,
+      createdAt: new Date(),
+      updatedAt: new Date
+      },
+      { ownerId: 5,
+        address: '97346 Johnson St',
+        city: 'Cambridge',
+        state: 'New York',
+        country: 'United States',
+        lat: 937.159,
+        lng: -607.145,
+        name: 'Demo Spot 5',
+        description: 'A man named John Johnson lived here',
+        price: 250,
+        createdAt: new Date(),
+        updatedAt: new Date
+      }
     ], options);
   },
 
