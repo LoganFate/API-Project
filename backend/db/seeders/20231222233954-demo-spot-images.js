@@ -17,14 +17,34 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       },
-      // Add 4 more spot image entries
-      // {
-      //   spotId: X,
-      //   url: 'http://example.com/spot-image-X.jpg',
-      //   preview: true or false,
-      //   createdAt: new Date(),
-      //   updatedAt: new Date()
-      // },
+      {
+        spotId: 2, // Replace with actual spot IDs
+        url: 'http://example.com/spot-image-2.jpg',
+        preview: true, // or false depending on your need
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        spotId: 3, // Replace with actual spot IDs
+        url: 'http://example.com/spot-image-3.jpg',
+        preview: true, // or false depending on your need
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        spotId: 4, // Replace with actual spot IDs
+        url: 'http://example.com/spot-image-4.jpg',
+        preview: true, // or false depending on your need
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        spotId: 5, // Replace with actual spot IDs
+        url: 'http://example.com/spot-image-5.jpg',
+        preview: true, // or false depending on your need
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
     ], options);
   },
 

@@ -18,15 +18,38 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       },
-      // Add 4 more booking entries
-      // {
-      //   spotId: X,
-      //   userId: Y,
-      //   startDate: new Date(),
-      //   endDate: new Date(new Date().setDate(new Date().getDate() + Z)),
-      //   createdAt: new Date(),
-      //   updatedAt: new Date()
-      // },
+      {
+        spotId: 2, // Replace with actual spot IDs
+        userId: 2, // Replace with actual user IDs
+        startDate: new Date(),
+        endDate: new Date(new Date().setDate(new Date().getDate() + 1)),
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        spotId: 3, // Replace with actual spot IDs
+        userId: 3, // Replace with actual user IDs
+        startDate: new Date(),
+        endDate: new Date(new Date().setDate(new Date().getDate() + 1)),
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        spotId: 4, // Replace with actual spot IDs
+        userId: 4, // Replace with actual user IDs
+        startDate: new Date(),
+        endDate: new Date(new Date().setDate(new Date().getDate() + 1)),
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        spotId: 5, // Replace with actual spot IDs
+        userId: 5, // Replace with actual user IDs
+        startDate: new Date(),
+        endDate: new Date(new Date().setDate(new Date().getDate() + 1)),
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
     ], options);
   },
 

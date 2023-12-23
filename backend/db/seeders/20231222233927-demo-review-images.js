@@ -16,13 +16,30 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       },
-      // Add 4 more review image entries
-      // {
-      //   reviewId: X,
-      //   url: 'http://example.com/review-image-X.jpg',
-      //   createdAt: new Date(),
-      //   updatedAt: new Date()
-      // },
+      {
+        reviewId: 2, // Replace with actual review IDs
+        url: 'http://example.com/review-image-2.jpg',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        reviewId: 3, // Replace with actual review IDs
+        url: 'http://example.com/review-image-3.jpg',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        reviewId: 4, // Replace with actual review IDs
+        url: 'http://example.com/review-image-4.jpg',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        reviewId: 5, // Replace with actual review IDs
+        url: 'http://example.com/review-image-5.jpg',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
     ], options);
   },
 
