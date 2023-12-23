@@ -14,11 +14,14 @@ const isProduction = environment === 'production';
 const app = express();
 
 const { ValidationError } = require('sequelize');
+ // Import the spots routes
+
 
 app.use(morgan('dev'));
 
 app.use(cookieParser());
 app.use(express.json());
+
 
 
 
