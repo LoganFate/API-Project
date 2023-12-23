@@ -25,7 +25,20 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       },
-      // Add 4 more spot entries
+      {
+        ownerId: 2,  // Replace with actual user IDs
+        address: '777 Random Avenue',
+        city: 'Baltimore',
+        state: 'MD',
+        country: 'United States',
+        lat: 456.789,
+        lng: -456.789,
+        name: 'Demo Spot 2',
+        description: 'A very beautiful demo spot',
+        price: 1000,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
     ], options);
   },
 
