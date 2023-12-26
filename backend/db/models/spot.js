@@ -78,5 +78,3 @@ module.exports = (sequelize, DataTypes) => {
 
   return Spot;
 };
-
-module.exports = Spot;
