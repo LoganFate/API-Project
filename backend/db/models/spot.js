@@ -5,8 +5,13 @@ const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Spot extends Model {
     static associate(models) {
-      // Define associations here
-      // Example: this.belongsTo(models.User, { foreignKey: 'ownerId' });
+        // Example of associating Spot with Review
+    // This assumes that your Review model has a 'spotId' foreign key
+    this.hasMany(models.Review, { foreignKey: 'spotId' });
+
+    // Example of associating Spot with SpotImage
+    // This assumes that your SpotImage model has a 'spotId' foreign key
+    this.hasMany(models.SpotImage, { foreignKey: 'spotId' });
     }
   }
 
@@ -73,3 +78,5 @@ module.exports = (sequelize, DataTypes) => {
 
   return Spot;
 };
+
+module.exports = Spot;

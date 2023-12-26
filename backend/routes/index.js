@@ -1,9 +1,11 @@
 // backend/routes/index.js
 const express = require('express');
 const router = express.Router();
+const spotsRoutes = require('./spotsRoutes');
 const apiRouter = require('./api');
 
 router.use('/api', apiRouter);
+router.use('/spots', spotsRoutes);
 
 // Add a XSRF-TOKEN cookie
 router.get("/api/csrf/restore", (req, res) => {

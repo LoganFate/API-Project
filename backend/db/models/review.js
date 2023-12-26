@@ -7,8 +7,8 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // Define associations here
       // Example:
-      // this.belongsTo(models.User, { foreignKey: 'userId' });
-      // this.belongsTo(models.Spot, { foreignKey: 'spotId' });
+      this.belongsTo(models.User, { foreignKey: 'userId' });
+      this.belongsTo(models.Spot, { foreignKey: 'spotId' });
     }
   }
 
