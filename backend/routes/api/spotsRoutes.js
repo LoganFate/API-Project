@@ -1,5 +1,6 @@
 const express = require('express');
-const { Spot, Review, SpotImage, Sequelize } = require('../models');
+const { Sequelize } = require('sequelize');
+const { Spot, Review, SpotImage } = require('../../db/models');
 const router = express.Router();
 
 router.get('/', async (req, res) => {

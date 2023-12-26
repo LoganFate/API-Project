@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
 
     // Example of associating Spot with SpotImage
     // This assumes that your SpotImage model has a 'spotId' foreign key
-    this.hasMany(models.SpotImage, { foreignKey: 'spotId' });
+    this.hasMany(models.SpotImage, { foreignKey: 'spotId', as: 'PreviewImage' });
     }
   }
 

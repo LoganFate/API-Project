@@ -1,7 +1,7 @@
 // backend/routes/index.js
 const express = require('express');
 const router = express.Router();
-const spotsRoutes = require('./spotsRoutes');
+const spotsRoutes = require('./api/spotsRoutes');
 const apiRouter = require('./api');
 
 router.use('/api', apiRouter);
