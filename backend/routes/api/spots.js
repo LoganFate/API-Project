@@ -121,10 +121,30 @@ router.get('/:spotId', async (req, res, next) => {
 
 // POST /api/spots to create a new spot
 router.post('/', requireAuth, async (req, res, next) => {
-    try {
+
         const { address, city, state, country, lat, lng, name, description, price } = req.body;
         const ownerId = req.user.id; // Assuming the user ID is stored in req.user
+        const validationErrors = {};
 
+        // Custom validation for each field
+        if (!address) validationErrors.address = "Street address is required";
+        if (!city) validationErrors.city = "City is required";
+        if (!state) validationErrors.state = "State is required";
+        if (!country) validationErrors.country = "Country is required";
+        if (lat == null || lat < -90 || lat > 90) validationErrors.lat = "Latitude must be within -90 and 90";
+        if (lng == null || lng < -180 || lng > 180) validationErrors.lng = "Longitude must be within -180 and 180";
+        if (!name || name.length > 50) validationErrors.name = "Name must be less than 50 characters";
+        if (!description) validationErrors.description = "Description is required";
+        if (!price || price <= 0) validationErrors.price = "Price per day must be a positive number";
+
+        if (Object.keys(validationErrors).length > 0) {
+            return res.status(400).json({
+                message: "Bad Request",
+                errors: validationErrors
+            });
+        }
+
+    try {
         const newSpot = await Spot.create({
             ownerId,
             address,
@@ -140,20 +160,7 @@ router.post('/', requireAuth, async (req, res, next) => {
 
         return res.status(201).json(newSpot);
     } catch (error) {
-        if (error.name === 'SequelizeValidationError') {
-            // Handle validation errors
-            const validationErrors = {};
-            error.errors.forEach(err => {
-                validationErrors[err.path] = err.message;
-            });
-
-            return res.status(400).json({
-                message: "Bad Request",
-                errors: validationErrors
-            });
-        } else {
-            return next(error);
-        }
+       return next (error);
     }
 });
 
@@ -171,7 +178,7 @@ router.post('/:spotId/images', requireAuth, async (req, res, next) => {
 
         // Check if the spot belongs to the current user
         if (spot.ownerId !== userId) {
-            return res.status(403).json({ message: "You don't have permission to add an image to this spot" });
+            return res.status(403).json({ message: "Forbidden" });
         }
 
         const newImage = await SpotImage.create({
@@ -218,7 +225,7 @@ router.put('/:spotId', requireAuth, async (req, res, next) => {
 
         // Check if the spot belongs to the current user
         if (spot.ownerId !== userId) {
-            return res.status(403).json({ message: "You don't have permission to edit this spot" });
+            return res.status(403).json({ message: "Forbidden" });
         }
 
         // Update the spot
