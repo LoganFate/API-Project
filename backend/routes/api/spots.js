@@ -2,7 +2,7 @@ const express = require('express');
 const { Sequelize, Op } = require('sequelize');
 const { Spot, Review, SpotImage } = require('../../db/models'); // Adjust the path as needed
 const router = express.Router();
-
+const { requireAuth } = require('../../utils/auth');
 router.get('/', async (req, res) => {
     try {
         const spots = await Spot.findAll({
@@ -38,6 +38,40 @@ router.get('/', async (req, res) => {
         });
 
         res.json({ Spots: formattedSpots });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+router.get('/current', requireAuth, async (req, res) => {
+    const currentUserId = req.user.id;
+
+    try {
+        const spots = await Spot.findAll({
+            where: { ownerId: currentUserId },
+            include: [
+                {
+                    model: Review,
+                    attributes: []
+                },
+                {
+                    model: SpotImage,
+                    as: 'PreviewImage',
+                    attributes: ['url'],
+                    where: { preview: true },
+                    required: false
+                }
+            ],
+            attributes: {
+                include: [
+                    [Sequelize.fn('AVG', Sequelize.col('Reviews.stars')), 'avgRating']
+                ],
+                exclude: ['createdAt', 'updatedAt']
+            },
+            group: ['Spot.id', 'PreviewImage.id']
+        });
+
+        res.status(200).json({ Spots: spots });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
