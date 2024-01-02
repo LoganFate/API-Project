@@ -119,5 +119,44 @@ router.get('/:spotId', async (req, res, next) => {
     }
 });
 
+// POST /api/spots to create a new spot
+router.post('/', requireAuth, async (req, res, next) => {
+    try {
+        const { address, city, state, country, lat, lng, name, description, price } = req.body;
+        const ownerId = req.user.id; // Assuming the user ID is stored in req.user
+
+        const newSpot = await Spot.create({
+            ownerId,
+            address,
+            city,
+            state,
+            country,
+            lat,
+            lng,
+            name,
+            description,
+            price
+        });
+
+        return res.status(201).json(newSpot);
+    } catch (error) {
+        if (error.name === 'SequelizeValidationError') {
+            // Handle validation errors
+            const validationErrors = {};
+            error.errors.forEach(err => {
+                validationErrors[err.path] = err.message;
+            });
+
+            return res.status(400).json({
+                message: "Bad Request",
+                errors: validationErrors
+            });
+        } else {
+            return next(error);
+        }
+    }
+});
+
+
 
 module.exports = router;
