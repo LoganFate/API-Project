@@ -4,7 +4,7 @@ const { Op } = require('sequelize');
 const bcrypt = require('bcryptjs');
 
 const { setTokenCookie, restoreUser } = require('../../utils/auth');
-const { User } = require('../../db/models');
+const { User, Spot } = require('../../db/models');
 
 const router = express.Router();
 
@@ -74,7 +74,7 @@ router.delete(
   // Restore session user
 router.get(
     '/',
-    (req, res) => {
+   (req, res) => {
       const { user } = req;
       if (user) {
         const safeUser = {
