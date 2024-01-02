@@ -186,6 +186,45 @@ router.post('/:spotId/images', requireAuth, async (req, res, next) => {
     }
 });
 
+// PUT /api/spots/:spotId to update an existing spot
+router.put('/:spotId', requireAuth, async (req, res, next) => {
+    const { spotId } = req.params;
+    const { address, city, state, country, lat, lng, name, description, price } = req.body;
+    const userId = req.user.id; // Assuming the user ID is stored in req.user
+
+    try {
+        const spot = await Spot.findByPk(spotId);
+        if (!spot) {
+            return res.status(404).json({ message: "Spot couldn't be found" });
+        }
+
+        // Check if the spot belongs to the current user
+        if (spot.ownerId !== userId) {
+            return res.status(403).json({ message: "You don't have permission to edit this spot" });
+        }
+
+        // Update the spot
+        spot.address = address;
+        spot.city = city;
+        spot.state = state;
+        spot.country = country;
+        spot.lat = lat;
+        spot.lng = lng;
+        spot.name = name;
+        spot.description = description;
+        spot.price = price;
+
+        await spot.save();
+
+        return res.json(spot);
+    } catch (error) {
+        if (error.name === 'SequelizeValidationError') {
+            const errors = error.errors.map(err => err.message);
+            return res.status(400).json({ message: "Bad Request", errors });
+        }
+        return next(error);
+    }
+});
 
 
 
