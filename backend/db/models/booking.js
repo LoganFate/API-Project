@@ -9,6 +9,8 @@ module.exports = (sequelize, DataTypes) => {
       // Example:
       // this.belongsTo(models.User, { foreignKey: 'userId' });
       // this.belongsTo(models.Spot, { foreignKey: 'spotId' });
+      Booking.belongsTo(models.User, { foreignKey: 'userId' });
+      Booking.belongsTo(models.Spot, { foreignKey: 'spotId' });
     }
   }
 
