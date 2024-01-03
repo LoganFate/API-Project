@@ -12,7 +12,7 @@ module.exports = {
   async up (queryInterface, Sequelize) {
     await queryInterface.bulkInsert('Spots', [
       {
-        ownerId: 2,  // Replace with actual user IDs
+        ownerId: 1,  // Replace with actual user IDs
         address: '123 Demo Street',
         city: 'Demoville',
         state: 'DS',
@@ -40,7 +40,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        ownerId: 2,
+        ownerId: 3,
         address: '1756 Silk Road',
         city: 'Manhattan',
         state: 'New York',
