@@ -9,7 +9,7 @@ if (process.env.NODE_ENV === 'production') {
 
 module.exports = {
   async up (queryInterface, Sequelize) {
-    await queryInterface.bulkInsert('ReviewImages', [
+    await ReviewImage.bulkCreate([
       {
         reviewId: 1, // Replace with actual review IDs
         url: 'http://example.com/review-image-1.jpg',
@@ -40,7 +40,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       },
-    ], options);
+    ], { validate: true });
   },
 
   async down (queryInterface, Sequelize) {
