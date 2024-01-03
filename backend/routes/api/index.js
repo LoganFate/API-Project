@@ -1,9 +1,9 @@
-//*====> backend/routes/api/index.js <====
-
-const router = require("express").Router();
-const sessionRouter = require("./session.js");
-const usersRouter = require("./users.js");
-const spotsRouter = require("./spotsRoutes.js");
+// backend/routes/api/index.js
+const router = require('express').Router();
+const sessionRouter = require('./session.js');
+const usersRouter = require('./users.js');
+const spotsRouter = require('./spots.js');
+const reviewsRouter = require('./reviews.js');
 const { restoreUser } = require("../../utils/auth.js");
 // const { setTokenCookie } = require("../../utils/auth.js");
 // const { User } = require("../../db/models");
@@ -14,9 +14,10 @@ const { restoreUser } = require("../../utils/auth.js");
 // If current user session is not valid, set req.user to null
 router.use(restoreUser);
 
-router.use("/session", sessionRouter);
-
-router.use("/users", usersRouter);
+router.use('/session', sessionRouter);
+router.use('/users', usersRouter);
+router.use('/spots', spotsRouter);
+router.use('/reviews', reviewsRouter);
 
 router.use("/spots", spotsRouter);
 
