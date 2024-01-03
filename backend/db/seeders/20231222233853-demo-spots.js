@@ -10,14 +10,14 @@ if (process.env.NODE_ENV === 'production') {
 
 module.exports = {
   async up (queryInterface, Sequelize) {
-    await queryInterface.bulkInsert('Spots', [
+    await Spot.bulkCreate([
       {
-        ownerId: 2,  // Replace with actual user IDs
+        ownerId: 1,  // Replace with actual user IDs
         address: '123 Demo Street',
         city: 'Demoville',
         state: 'DS',
         country: 'Demo Country',
-        lat: 123.456,
+        lat: 23.456,
         lng: -123.456,
         name: 'Demo Spot 1',
         description: 'A lovely demo spot',
@@ -31,8 +31,8 @@ module.exports = {
         city: 'Baltimore',
         state: 'MD',
         country: 'United States',
-        lat: 456.789,
-        lng: -456.789,
+        lat: 56.789,
+        lng: -56.789,
         name: 'Demo Spot 2',
         description: 'A very beautiful demo spot',
         price: 1000,
@@ -40,13 +40,13 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        ownerId: 2,
+        ownerId: 3,
         address: '1756 Silk Road',
         city: 'Manhattan',
         state: 'New York',
         country: 'United States',
-        lat: 956.148,
-        lng: -630.419,
+        lat: 56.148,
+        lng: -30.419,
         name: 'Demo Spot 3',
         description: 'An absolutely magnificent demo spot',
         price: 3000,
@@ -59,8 +59,8 @@ module.exports = {
       city: 'NoName',
       state: 'UK',
       country: 'Great Britain',
-      lat: 467.184,
-      lng: -186.629,
+      lat: 67.184,
+      lng: -86.629,
       name: 'Demo Spot 4',
       description: 'No one knows of this spot, very secluded',
       price: 500,
@@ -72,15 +72,15 @@ module.exports = {
         city: 'Cambridge',
         state: 'New York',
         country: 'United States',
-        lat: 937.159,
-        lng: -607.145,
+        lat: 37.159,
+        lng: -37.145,
         name: 'Demo Spot 5',
         description: 'A man named John Johnson lived here',
         price: 250,
         createdAt: new Date(),
         updatedAt: new Date
       }
-    ], options);
+    ], { validate: true });
   },
 
   async down (queryInterface, Sequelize) {
