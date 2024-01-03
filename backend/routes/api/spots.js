@@ -25,7 +25,7 @@ router.get('/', async (req, res) => {
                 ],
                 exclude: ['createdAt', 'updatedAt']
             },
-            group: ['Spot.id', 'PreviewImage.id']
+            group: ['Spot.id', 'previewImage.id']
         });
 
         // Map through the results to format the response
@@ -68,7 +68,7 @@ router.get('/current', requireAuth, async (req, res) => {
                 ],
                 exclude: ['createdAt', 'updatedAt']
             },
-            group: ['Spot.id', 'PreviewImage.id']
+            group: ['Spot.id', 'previewImage.id']
         });
 
         res.status(200).json({ Spots: spots });
