@@ -40,6 +40,39 @@ router.get('/current', requireAuth, async (req, res) => {
     }
 });
 
+router.post('/:reviewId/images', requireAuth, async (req, res, next) => {
+    const { reviewId } = req.params;
+    const { url } = req.body;
+    const userId = req.user.id; // Assuming the user ID is stored in req.user
+
+    try {
+        const review = await Review.findByPk(reviewId);
+        if (!review) {
+            return res.status(404).json({ message: "Review couldn't be found" });
+        }
+
+        // Check if the review belongs to the current user
+        if (review.userId !== userId) {
+            return res.status(403).json({ message: "Forbidden" });
+        }
+
+        // Check the number of images associated with the review
+        const countImages = await ReviewImage.count({ where: { reviewId } });
+        if (countImages >= 10) {
+            return res.status(403).json({ message: "Maximum number of images for this resource was reached" });
+        }
+
+        // Create a new image for the review
+        const newImage = await ReviewImage.create({ reviewId, url });
+        return res.status(201).json({
+            id: newImage.id,
+            url: newImage.url
+        });
+    } catch (error) {
+        next(error);
+    }
+});
+
 
 
 module.exports = router;
