@@ -380,6 +380,99 @@ router.get('/:spotId/bookings', requireAuth, async (req, res) => {
 });
 
 
+// Function to check for booking conflicts
+const checkBookingConflict = async (spotId, startDate, endDate) => {
+    const conflictingBooking = await Booking.findOne({
+        where: {
+            spotId,
+            [Op.or]: [
+                {
+                    startDate: {
+                        [Op.between]: [startDate, endDate],
+                    },
+                },
+                {
+                    endDate: {
+                        [Op.between]: [startDate, endDate],
+                    },
+                },
+                {
+                    [Op.and]: [
+                        {
+                            startDate: {
+                                [Op.lte]: startDate,
+                            },
+                        },
+                        {
+                            endDate: {
+                                [Op.gte]: endDate,
+                            },
+                        },
+                    ],
+                },
+            ],
+        },
+    });
 
+    if (conflictingBooking) {
+        return {
+            message: "Sorry, this spot is already booked for the specified dates",
+            errors: {
+                startDate: "Start date conflicts with an existing booking",
+                endDate: "End date conflicts with an existing booking",
+            },
+        };
+    }
+
+    return null;
+};
+// Function to validate booking dates
+const validateBookingDates = (startDate, endDate) => {
+    const errors = {};
+    const currentDate = new Date();
+    startDate = new Date(startDate);
+    endDate = new Date(endDate);
+
+    if (startDate < currentDate) {
+        errors.startDate = "startDate cannot be in the past";
+    }
+
+    if (endDate <= startDate) {
+        errors.endDate = "endDate cannot be on or before startDate";
+    }
+
+    return errors;
+};
+
+// POST /api/spots/:spotId/bookings - Create a booking for a spot
+router.post('/:spotId/bookings', requireAuth, async (req, res) => {
+    const { spotId } = req.params;
+    const { startDate, endDate } = req.body;
+    const userId = req.user.id;
+
+     // Validate booking dates
+     const dateErrors = validateBookingDates(startDate, endDate);
+     if (Object.keys(dateErrors).length) {
+         return res.status(400).json({ message: "Bad Request", errors: dateErrors });
+     }
+
+    // Check for booking conflicts
+    const conflictError = await checkBookingConflict(spotId, startDate, endDate);
+    if (conflictError) return res.status(403).json(conflictError);
+
+    try {
+        // Create new booking
+        const newBooking = await Booking.create({
+            userId,
+            spotId,
+            startDate,
+            endDate,
+        });
+
+        return res.status(201).json(newBooking);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
 
 module.exports = router;
