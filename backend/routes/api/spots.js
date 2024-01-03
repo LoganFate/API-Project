@@ -31,9 +31,16 @@ router.get('/', async (req, res) => {
         // Map through the results to format the response
         const formattedSpots = spots.map(spot => {
             const spotJSON = spot.toJSON();
+            let avgRatingFormatted = null;
+
+            // Check if avgRating is a number before calling toFixed
+            if (typeof spotJSON.avgRating === 'number') {
+                avgRatingFormatted = parseFloat(spotJSON.avgRating.toFixed(2));
+            }
+
             return {
                 ...spotJSON,
-                avgRating: spotJSON.avgRating ? parseFloat(spotJSON.avgRating.toFixed(2)) : null
+                avgRating: avgRatingFormatted
             };
         });
 
