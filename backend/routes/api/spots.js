@@ -1,6 +1,6 @@
 const express = require('express');
 const { Sequelize, Op } = require('sequelize');
-const { Spot, Review, SpotImage, User } = require('../../db/models'); // Adjust the path as needed
+const { Spot, Review, SpotImage, User, ReviewImage } = require('../../db/models'); // Adjust the path as needed
 const router = express.Router();
 const { requireAuth } = require('../../utils/auth');
 router.get('/', async (req, res) => {
@@ -270,7 +270,37 @@ router.delete('/:spotId', requireAuth, async (req, res, next) => {
 });
 
 
+// GET all reviews by a spot's ID
+router.get('/:spotId/reviews', async (req, res, next) => {
+    const { spotId } = req.params;
 
+    try {
+        // Check if the spot exists
+        const spot = await Spot.findByPk(spotId);
+        if (!spot) {
+            return res.status(404).json({ message: "Spot couldn't be found" });
+        }
+
+        // Fetch reviews for the spot
+        const reviews = await Review.findAll({
+            where: { spotId },
+            include: [
+                {
+                    model: User,
+                    attributes: ['id', 'firstName', 'lastName']
+                },
+                {
+                    model: ReviewImage,
+                    attributes: ['id', 'url']
+                }
+            ]
+        });
+
+        res.json({ Reviews: reviews });
+    } catch (error) {
+        next(error);
+    }
+});
 
 
 module.exports = router;
