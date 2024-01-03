@@ -9,7 +9,7 @@ if (process.env.NODE_ENV === 'production') {
 
 module.exports = {
   async up (queryInterface, Sequelize) {
-    await queryInterface.bulkInsert('Reviews', [
+    await Review.bulkCreate([
       {
         spotId: 1, // Replace with actual spot IDs
         userId: 1, // Replace with actual user IDs
@@ -50,7 +50,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       },
-    ], options);
+    ], { validate: true });
   },
 
   async down (queryInterface, Sequelize) {
