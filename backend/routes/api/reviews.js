@@ -73,6 +73,42 @@ router.post('/:reviewId/images', requireAuth, async (req, res, next) => {
     }
 });
 
+router.put('/:reviewId', requireAuth, async (req, res, next) => {
+    const { reviewId } = req.params;
+    const { review, stars } = req.body;
+    const userId = req.user.id; // Assuming the user ID is stored in req.user
+
+    // Validate the input
+    if (!review) {
+        return res.status(400).json({ message: "Bad Request", errors: { review: "Review text is required" } });
+    }
+    if (!stars || stars < 1 || stars > 5) {
+        return res.status(400).json({ message: "Bad Request", errors: { stars: "Stars must be an integer from 1 to 5" } });
+    }
+
+    try {
+        const existingReview = await Review.findByPk(reviewId);
+        if (!existingReview) {
+            return res.status(404).json({ message: "Review couldn't be found" });
+        }
+
+        // Check if the review belongs to the current user
+        if (existingReview.userId !== userId) {
+            return res.status(403).json({ message: "Forbidden" });
+        }
+
+        // Update the review
+        existingReview.review = review;
+        existingReview.stars = stars;
+        await existingReview.save();
+
+        // Respond with the updated review
+        return res.json(existingReview);
+    } catch (error) {
+        next(error);
+    }
+});
+
 
 
 module.exports = router;
