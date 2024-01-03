@@ -10,7 +10,7 @@ if (process.env.NODE_ENV === 'production') {
 
 module.exports = {
   async up (queryInterface, Sequelize) {
-    await queryInterface.bulkInsert('Spots', [
+    await Spot.bulkCreate([
       {
         ownerId: 1,  // Replace with actual user IDs
         address: '123 Demo Street',
@@ -80,7 +80,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date
       }
-    ], options);
+    ], { validate: true });
   },
 
   async down (queryInterface, Sequelize) {
