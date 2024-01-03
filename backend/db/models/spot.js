@@ -10,7 +10,8 @@ module.exports = (sequelize, DataTypes) => {
           // Association with Review
           Spot.hasMany(models.Review, { foreignKey: 'spotId', onDelete: 'CASCADE' });
           // Association with SpotImage
-          Spot.hasMany(models.SpotImage, { foreignKey: 'spotId', as: 'PreviewImage', as: 'SpotImages', as: 'previewImage', onDelete: 'CASCADE' });
+          Spot.hasMany(models.SpotImage, { foreignKey: 'spotId', as: 'previewImage', onDelete: 'CASCADE' });
+          Spot.hasMany(models.SpotImage, { foreignKey: 'spotId', as: 'SpotImages', onDelete: 'CASCADE' });
           Spot.belongsTo(models.User, {foreignKey: 'ownerId', as: 'Owner', onDelete: 'CASCADE' });
     }
   }
