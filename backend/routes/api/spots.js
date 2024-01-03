@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
                 },
                 {
                     model: SpotImage,
-                    as: 'PreviewImage',
+                    as: 'previewImage',
                     attributes: ['url'],
                     where: { preview: true },
                     required: false
@@ -25,15 +25,22 @@ router.get('/', async (req, res) => {
                 ],
                 exclude: ['createdAt', 'updatedAt']
             },
-            group: ['Spot.id', 'PreviewImage.id']
+            group: ['Spot.id', 'previewImage.id']
         });
 
         // Map through the results to format the response
         const formattedSpots = spots.map(spot => {
             const spotJSON = spot.toJSON();
+            let avgRatingFormatted = null;
+
+            // Check if avgRating is a number before calling toFixed
+            if (typeof spotJSON.avgRating === 'number') {
+                avgRatingFormatted = parseFloat(spotJSON.avgRating.toFixed(2));
+            }
+
             return {
                 ...spotJSON,
-                avgRating: spotJSON.avgRating ? parseFloat(spotJSON.avgRating.toFixed(2)) : null
+                avgRating: avgRatingFormatted
             };
         });
 
@@ -56,7 +63,7 @@ router.get('/current', requireAuth, async (req, res) => {
                 },
                 {
                     model: SpotImage,
-                    as: 'PreviewImage',
+                    as: 'previewImage',
                     attributes: ['url'],
                     where: { preview: true },
                     required: false
@@ -68,7 +75,7 @@ router.get('/current', requireAuth, async (req, res) => {
                 ],
                 exclude: ['createdAt', 'updatedAt']
             },
-            group: ['Spot.id', 'PreviewImage.id']
+            group: ['Spot.id', 'previewImage.id']
         });
 
         res.status(200).json({ Spots: spots });

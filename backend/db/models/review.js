@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       // Association with Spot
       Review.belongsTo(models.Spot, { foreignKey: 'spotId' });
       Review.belongsTo(models.User, { foreignKey: 'userId' });
-      Review.hasMany(models.ReviewImage, { foreignKey: 'reviewId' });
+      Review.hasMany(models.ReviewImage, { foreignKey: 'reviewId', onDelete: 'CASCADE' });
     }
   }
 
@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: 'Spots',
+        model: 'Spots',gut
         key: 'id'
       },
       onUpdate: 'CASCADE',
