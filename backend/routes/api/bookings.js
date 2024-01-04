@@ -52,6 +52,7 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
         const today = new Date();
         const start = new Date(startDate);
         const end = new Date(endDate);
+        const bookingEndDate = new Date(booking.endDate);
 
          // Check if the booking is past the end date
          if (bookingEndDate < today) {
