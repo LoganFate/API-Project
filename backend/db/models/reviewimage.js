@@ -8,6 +8,9 @@ module.exports = (sequelize, DataTypes) => {
       // Define associations here
       // Example: this.belongsTo(models.Review, { foreignKey: 'reviewId' });
       ReviewImage.belongsTo(models.Review, { foreignKey: 'reviewId', as: 'SpotImages' });
+      ReviewImage.belongsTo(models.Review, { foreignKey: 'reviewId', as: 'ReviewImages' });
+
+
     }
   }
 
