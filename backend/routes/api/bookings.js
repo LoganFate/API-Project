@@ -52,6 +52,11 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
         const today = new Date();
         const start = new Date(startDate);
         const end = new Date(endDate);
+
+         // Check if the booking is past the end date
+         if (bookingEndDate < today) {
+            return res.status(403).json({ message: "Past bookings can't be modified" });
+        }
         if (start < today) {
             return res.status(400).json({ message: "Bad Request", errors: { startDate: "startDate cannot be in the past" } });
         }
