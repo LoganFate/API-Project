@@ -9,36 +9,47 @@ router.get('/current', requireAuth, async (req, res) => {
     const currentUserId = req.user.id;
 
     try {
+        // Fetch reviews for the current user
         const reviews = await Review.findAll({
-            where: { userId: currentUserId },
-            include: [
-                {
-                    model: User,
-                    attributes: ['id', 'firstName', 'lastName']
-                },
-                {
-                    model: Spot,
-                    include: {
-                        model: SpotImage,
-                        as: 'previewImage',
-                        attributes: ['url'],
-                        where: { preview: true },
-                        required: false
-                    },
-                    attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'price']
-                },
-                {
-                    model: ReviewImage,
-                    attributes: ['id', 'url']
-                }
-            ]
+            where: { userId: currentUserId }
         });
+
+        // Lazy load associated data for each review
+        for (const review of reviews) {
+            // Load user data
+            const user = await review.getUser({
+                attributes: ['id', 'firstName', 'lastName']
+            });
+            review.dataValues.User = user;
+
+            // Load spot data and its preview image
+            const spot = await review.getSpot({
+                attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'price']
+            });
+            if (spot) {
+                const previewImage = await spot.getSpotImages({
+                    as: 'previewImage',
+                    attributes: ['url'],
+                    where: { preview: true },
+                    required: false
+                });
+                spot.dataValues.previewImage = previewImage;
+                review.dataValues.Spot = spot;
+            }
+
+            // Load review images
+            const reviewImages = await review.getReviewImages({
+                attributes: ['id', 'url']
+            });
+            review.dataValues.ReviewImages = reviewImages;
+        }
 
         res.status(200).json({ Reviews: reviews });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
 });
+
 
 router.post('/:reviewId/images', requireAuth, async (req, res, next) => {
     const { reviewId } = req.params;

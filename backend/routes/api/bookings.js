@@ -8,22 +8,29 @@ router.get('/current', requireAuth, async (req, res, next) => {
     const currentUserId = req.user.id;
 
     try {
+        // Fetch bookings for the current user without eager loading
         const bookings = await Booking.findAll({
-            where: { userId: currentUserId },
-            include: [
-                {
-                    model: Spot,
-                    include: {
-                        model: SpotImage,
-                        as: 'previewImage',
-                        attributes: ['url'],
-                        where: { preview: true },
-                        required: false
-                    },
-                    attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'price']
-                }
-            ]
+            where: { userId: currentUserId }
         });
+
+        // Lazy load associated Spot and SpotImage for each booking
+        for (const booking of bookings) {
+            // Load spot data
+            const spot = await booking.getSpot({
+                attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'price']
+            });
+
+            // Load spot's preview image
+            if (spot) {
+                const previewImage = await SpotImage.findOne({
+                    where: { spotId: spot.id, preview: true },
+                    attributes: ['url']
+                });
+
+                spot.dataValues.previewImage = previewImage;
+                booking.dataValues.Spot = spot;
+            }
+        }
 
         res.status(200).json({ Bookings: bookings });
     } catch (error) {
