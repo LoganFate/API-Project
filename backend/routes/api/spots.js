@@ -70,12 +70,12 @@ router.get('/', async (req, res) => {
                 raw: true,
             });
 
-// Check if avgRating is a number before calling toFixed
-            if (avgRating[0].avgRating !== null) {
+        // Check if avgRating is a number before calling toFixed
+            if (avgRating[0].avgRating !== null && !isNaN(avgRating[0].avgRating)) {
                 spot.dataValues.avgRating = parseFloat(avgRating[0].avgRating.toFixed(2));
-        } else {
-                spot.dataValues.avgRating = null;
-}
+            } else {
+                 spot.dataValues.avgRating = null;
+    }
 }
         // Formatting the response
         const formattedSpots = spots.map(spot => spot.toJSON());
