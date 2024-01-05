@@ -16,6 +16,22 @@ router.get('/', async (req, res) => {
     const minPrice = parseFloat(req.query.minPrice);
     const maxPrice = parseFloat(req.query.maxPrice);
 
+    // Validation
+    const errors = {};
+    if (isNaN(page) || page < 1) errors.page = "Page must be greater than or equal to 1";
+    if (isNaN(size) || size < 1) errors.size = "Size must be greater than or equal to 1";
+    if (!isNaN(minLat) && (minLat < -90 || minLat > 90)) errors.minLat = "Minimum latitude is invalid";
+    if (!isNaN(maxLat) && (maxLat < -90 || maxLat > 90)) errors.maxLat = "Maximum latitude is invalid";
+    if (!isNaN(minLng) && (minLng < -180 || minLng > 180)) errors.minLng = "Minimum longitude is invalid";
+    if (!isNaN(maxLng) && (maxLng < -180 || maxLng > 180)) errors.maxLng = "Maximum longitude is invalid";
+    if (!isNaN(minPrice) && minPrice < 0) errors.minPrice = "Minimum price must be greater than or equal to 0";
+    if (!isNaN(maxPrice) && maxPrice < 0) errors.maxPrice = "Maximum price must be greater than or equal to 0";
+
+    if (Object.keys(errors).length > 0) {
+        return res.status(400).json({ message: "Bad Request", errors });
+    }
+
+
     // Validate and set up pagination limits
     const limit = Math.min(Math.max(size, 1), 20); // Ensures size is between 1 and 20
     const offset = (Math.max(page, 1) - 1) * limit; // Ensures page is at least 1
