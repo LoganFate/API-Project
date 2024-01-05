@@ -7,10 +7,32 @@ const { requireAuth } = require('../../utils/auth');
 
 router.get('/', async (req, res) => {
     try {
+        // Extract query parameters with default values
+        const page = parseInt(req.query.page, 10) || 1;
+        const size = Math.min(parseInt(req.query.size, 10) || 20, 20);
+        const minLat = req.query.minLat ? parseFloat(req.query.minLat) : null;
+        const maxLat = req.query.maxLat ? parseFloat(req.query.maxLat) : null;
+        const minLng = req.query.minLng ? parseFloat(req.query.minLng) : null;
+        const maxLng = req.query.maxLng ? parseFloat(req.query.maxLng) : null;
+        const minPrice = req.query.minPrice ? parseFloat(req.query.minPrice) : null;
+        const maxPrice = req.query.maxPrice ? parseFloat(req.query.maxPrice) : null;
+
+        // Construct where clause for filtering
+        const whereClause = {};
+        if (minLat) whereClause.lat = { [Op.gte]: minLat };
+        if (maxLat) whereClause.lat = { ...(whereClause.lat || {}), [Op.lte]: maxLat };
+        if (minLng) whereClause.lng = { [Op.gte]: minLng };
+        if (maxLng) whereClause.lng = { ...(whereClause.lng || {}), [Op.lte]: maxLng };
+        if (minPrice) whereClause.price = { [Op.gte]: minPrice };
+        if (maxPrice) whereClause.price = { ...(whereClause.price || {}), [Op.lte]: maxPrice };
+
+        // Fetch spots with filters and pagination
         const spots = await Spot.findAll({
+            where: whereClause,
             include: [
                 {
                     model: Review,
+                    as: 'Reviews',
                     attributes: []
                 },
                 {
@@ -27,26 +49,18 @@ router.get('/', async (req, res) => {
                 ],
                 exclude: ['createdAt', 'updatedAt']
             },
+            limit: size,
+            offset: (page - 1) * size,
             group: ['Spot.id', 'previewImage.id']
         });
 
-        // Map through the results to format the response
-        const formattedSpots = spots.map(spot => {
-            const spotJSON = spot.toJSON();
-            let avgRatingFormatted = null;
+        // Format response
+        const formattedSpots = spots.map(spot => ({
+            ...spot.get({ plain: true }),
+            avgRating: spot.avgRating ? parseFloat(spot.avgRating.toFixed(2)) : null
+        }));
 
-            // Check if avgRating is a number before calling toFixed
-            if (typeof spotJSON.avgRating === 'number') {
-                avgRatingFormatted = parseFloat(spotJSON.avgRating.toFixed(2));
-            }
-
-            return {
-                ...spotJSON,
-                avgRating: avgRatingFormatted
-            };
-        });
-
-        res.json({ Spots: formattedSpots });
+        res.json({ Spots: formattedSpots, page, size });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
@@ -474,7 +488,6 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 });
-
 
 
 module.exports = router;

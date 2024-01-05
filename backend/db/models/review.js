@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
       // this.belongsTo(models.User, { foreignKey: 'userId' });
       // this.belongsTo(models.Spot, { foreignKey: 'spotId' });
       // Association with Spot
-      Review.belongsTo(models.Spot, { foreignKey: 'spotId' });
+      Review.belongsTo(models.Spot, { foreignKey: 'spotId', });
       Review.belongsTo(models.User, { foreignKey: 'userId' });
       Review.hasMany(models.ReviewImage, { foreignKey: 'reviewId', onDelete: 'CASCADE' });
     }
