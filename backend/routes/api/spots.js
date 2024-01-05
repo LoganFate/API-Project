@@ -64,22 +64,22 @@ router.get('/', async (req, res) => {
 
         // Lazy loading the average rating for each spot
         for (const spot of spots) {
-            const avgRating = await Review.findAll({
+            const avgRatingResult = await Review.findAll({
                 where: { spotId: spot.id },
                 attributes: [[Sequelize.fn('AVG', Sequelize.col('stars')), 'avgRating']],
                 raw: true,
             });
 
-        // Check if avgRating is a number before calling toFixed
-            if (avgRating[0].avgRating !== null && !isNaN(avgRating[0].avgRating)) {
-                spot.dataValues.avgRating = parseFloat(avgRating[0].avgRating.toFixed(2));
-            } else {
-                 spot.dataValues.avgRating = null;
-    }
-}
+            let avgRating = avgRatingResult[0].avgRating;
+            if (avgRating !== null && !isNaN(avgRating)) {
+                // Convert to number and format to two decimal places
+                avgRating = parseFloat(avgRating).toFixed(2);
+            }
+            spot.dataValues.avgRating = avgRating;
+        }
+
         // Formatting the response
         const formattedSpots = spots.map(spot => spot.toJSON());
-
         res.json({ Spots: formattedSpots, page, size });
     } catch (error) {
         res.status(500).json({ error: error.message });
