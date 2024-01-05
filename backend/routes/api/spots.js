@@ -70,9 +70,13 @@ router.get('/', async (req, res) => {
                 raw: true,
             });
 
-            spot.dataValues.avgRating = avgRating[0].avgRating ? parseFloat(avgRating[0].avgRating.toFixed(2)) : null;
-        }
-
+// Check if avgRating is a number before calling toFixed
+            if (avgRating[0].avgRating !== null) {
+                spot.dataValues.avgRating = parseFloat(avgRating[0].avgRating.toFixed(2));
+        } else {
+                spot.dataValues.avgRating = null;
+}
+}
         // Formatting the response
         const formattedSpots = spots.map(spot => spot.toJSON());
 
