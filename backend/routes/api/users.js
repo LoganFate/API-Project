@@ -37,26 +37,49 @@ const validateSignup = [
   ];
 
 
-
-// Sign up
-router.post('/', validateSignup, async (req, res) => {
+// sign up
+  router.post('/', validateSignup, async (req, res, next) => {
     const { email, password, username, firstName, lastName } = req.body;
-    const hashedPassword = bcrypt.hashSync(password);
-    const user = await User.create({ email, username, hashedPassword, firstName, lastName });
 
-    const safeUser = {
-        id: user.id,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        email: user.email,
-        username: user.username,
-    };
+    try {
+        const hashedPassword = bcrypt.hashSync(password);
+        const user = await User.create({ email, username, hashedPassword, firstName, lastName });
 
-    await setTokenCookie(res, safeUser);
+        const safeUser = {
+            id: user.id,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
+            username: user.username,
+        };
 
-    return res.json({
-        user: safeUser
-    });
+        await setTokenCookie(res, safeUser);
+
+        return res.json({
+            user: safeUser
+        });
+    } catch (error) {
+        if (error.name === 'SequelizeUniqueConstraintError') {
+            // Handle unique constraint error (e.g., duplicate email)
+            return res.status(400).json({
+                message: "User already exists.",
+                errors: { email: 'User with that email already exists.' }
+            });
+        } else if (error.name === 'SequelizeValidationError') {
+            // Handle other Sequelize validation errors
+            const errors = {};
+            error.errors.forEach((e) => {
+                errors[e.path] = e.message;
+            });
+            return res.status(400).json({
+                message: "Validation error",
+                errors: errors
+            });
+        } else {
+            // Pass other types of errors to the error-handling middleware
+            next(error);
+        }
+    }
 });
 
 module.exports = router;

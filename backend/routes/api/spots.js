@@ -505,6 +505,10 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
     if (conflictError) return res.status(403).json(conflictError);
 
     try {
+        const spot = await Spot.findByPk(spotId);
+        if (!spot) {
+            return res.status(404).json({ message: "Spot couldn't be found" });
+        }
         // Create new booking
         const newBooking = await Booking.create({
             userId,
