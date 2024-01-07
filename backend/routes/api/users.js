@@ -60,19 +60,20 @@ const validateSignup = [
         });
     } catch (error) {
         if (error.name === 'SequelizeUniqueConstraintError') {
-            // Handle unique constraint error (e.g., duplicate email)
+            // Determine the field that caused the unique constraint error
+            const isEmailError = error.errors.some(err => err.path === 'email');
+            const isUsernameError = error.errors.some(err => err.path === 'username');
+
+            let errors = {};
+            if (isEmailError) {
+                errors.email = 'User with that email already exists.';
+            }
+            if (isUsernameError) {
+                errors.username = 'User with that username already exists.';
+            }
+
             return res.status(400).json({
                 message: "User already exists.",
-                errors: { email: 'User with that email already exists.' }
-            });
-        } else if (error.name === 'SequelizeValidationError') {
-            // Handle other Sequelize validation errors
-            const errors = {};
-            error.errors.forEach((e) => {
-                errors[e.path] = e.message;
-            });
-            return res.status(400).json({
-                message: "Validation error",
                 errors: errors
             });
         } else {

@@ -57,7 +57,7 @@ router.get('/', async (req, res) => {
                     required: false
                 }
             ],
-            attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'description', 'price'],
+            attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'description', 'price', 'createdAt', 'updatedAt'],
             limit: limit,
             offset: offset,
         });
