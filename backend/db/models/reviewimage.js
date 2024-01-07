@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
       // Example: this.belongsTo(models.Review, { foreignKey: 'reviewId' });
       ReviewImage.belongsTo(models.Review, { foreignKey: 'reviewId', as: 'SpotImages' });
       ReviewImage.belongsTo(models.Review, { foreignKey: 'reviewId', as: 'ReviewImages' });
+      ReviewImage.belongsTo(models.Review, { foreignKey: 'reviewId' });
 
 
     }

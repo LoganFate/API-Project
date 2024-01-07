@@ -79,7 +79,15 @@ router.get('/', async (req, res) => {
         }
 
         // Formatting the response
-        const formattedSpots = spots.map(spot => spot.toJSON());
+        const formattedSpots = spots.map(spot => {
+            const spotJson = spot.toJSON();
+
+              // Extract the URL from the first preview image, if available
+              spotJson.previewImage = spotJson.previewImage.length > 0 ? spotJson.previewImage[0].url : null;
+
+              return spotJson;
+          });
+
         res.json({ Spots: formattedSpots, page, size });
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -508,6 +516,10 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
         const spot = await Spot.findByPk(spotId);
         if (!spot) {
             return res.status(404).json({ message: "Spot couldn't be found" });
+        }
+        // Check if spot belongs to current user
+        if (spot.ownerId === userId) {
+            return res.status(403).json({ message: "You cannot create a booking for your own spot."})
         }
         // Create new booking
         const newBooking = await Booking.create({

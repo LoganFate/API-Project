@@ -13,19 +13,18 @@ router.delete('/:imageId', requireAuth, async (req, res) => {
         const image = await ReviewImage.findByPk(imageId, {
             include: {
                 model: Review,
-                as: 'ReviewImages',
                 attributes: ['userId']
             }
         });
 
         // Check if image exists
-        if (!image) {
+        if (!image && !image.Review) {
             return res.status(404).json({ message: "Review Image couldn't be found" });
         }
 
         // Check if the image belongs to a review written by the current user
-        if (image.Review && image.Review.userId !== userId) {
-            return res.status(403).json({ message: "Forbidden" });
+        if (image.Review.user !== userId) {
+            return res.status(403).json({ message: "You do not have permission to delete this image." });
         }
 
         // Delete the image

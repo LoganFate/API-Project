@@ -30,7 +30,7 @@ module.exports = {
         spotId: 3, // Replace with actual spot IDs
         userId: 3, // Replace with actual user IDs
         review: 'It was alright.',
-        stars: 3.5,
+        stars: 3,
         createdAt: new Date(),
         updatedAt: new Date()
       },
