@@ -14,25 +14,25 @@ const validateSignup = [
     check('email')
       .exists({ checkFalsy: true })
       .isEmail()
-      .withMessage('Please provide a valid email.'),
+      .withMessage('Invalid email'),
     check('username')
       .exists({ checkFalsy: true })
       .isLength({ min: 4 })
-      .withMessage('Please provide a username with at least 4 characters.'),
+      .withMessage('Username is required'),
     check('username')
       .not()
       .isEmail()
       .withMessage('Username cannot be an email.'),
-    check('password')
-      .exists({ checkFalsy: true })
-      .isLength({ min: 6 })
-      .withMessage('Password must be 6 characters or more.'),
+    // check('password')
+    //   .exists({ checkFalsy: true })
+    //   .isLength({ min: 6 })
+    //   .withMessage('Password must be 6 characters or more.'),
       check('firstName') // Validation for firstName
       .exists({ checkFalsy: true })
-      .withMessage('Please provide a first name.'),
+      .withMessage('First Name is required'),
     check('lastName') // Validation for lastName
       .exists({ checkFalsy: true })
-      .withMessage('Please provide a last name.'),
+      .withMessage('Last Name is required'),
     handleValidationErrors
   ];
 
@@ -72,7 +72,7 @@ const validateSignup = [
                 errors.username = 'User with that username already exists.';
             }
 
-            return res.status(400).json({
+            return res.status(500).json({
                 message: "User already exists.",
                 errors: errors
             });

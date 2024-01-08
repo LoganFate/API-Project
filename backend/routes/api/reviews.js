@@ -9,47 +9,55 @@ router.get('/current', requireAuth, async (req, res) => {
     const currentUserId = req.user.id;
 
     try {
-        // Fetch reviews for the current user
         const reviews = await Review.findAll({
-            where: { userId: currentUserId }
+            where: { userId: currentUserId },
+            attributes: ['id', 'userId', 'spotId', 'review', 'stars', 'createdAt', 'updatedAt']
         });
 
-        // Lazy load associated data for each review
-        for (const review of reviews) {
-            // Load user data
+        const formattedReviews = await Promise.all(reviews.map(async review => {
             const user = await review.getUser({
                 attributes: ['id', 'firstName', 'lastName']
             });
-            review.dataValues.User = user;
 
-            // Load spot data and its preview image
             const spot = await review.getSpot({
                 attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'price']
             });
+
+            let previewImage = null;
             if (spot) {
-                const previewImage = await spot.getSpotImages({
-                    as: 'previewImage',
+                const previewImages = await spot.getSpotImages({
                     attributes: ['url'],
                     where: { preview: true },
-                    required: false
+                    limit: 1
                 });
+
+                previewImage = previewImages.length > 0 ? previewImages[0].url : null;
                 spot.dataValues.previewImage = previewImage;
-                review.dataValues.Spot = spot;
             }
 
-            // Load review images
             const reviewImages = await review.getReviewImages({
                 attributes: ['id', 'url']
             });
-            review.dataValues.ReviewImages = reviewImages;
-        }
 
-        res.status(200).json({ Reviews: reviews });
+            return {
+                id: review.id,
+                userId: review.userId,
+                spotId: review.spotId,
+                review: review.review,
+                stars: review.stars,
+                createdAt: review.createdAt,
+                updatedAt: review.updatedAt,
+                User: user,
+                Spot: spot ? spot.dataValues : null,
+                ReviewImages: reviewImages
+            };
+        }));
+
+        res.status(200).json({ Reviews: formattedReviews });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
 });
-
 
 router.post('/:reviewId/images', requireAuth, async (req, res, next) => {
     const { reviewId } = req.params;
@@ -87,14 +95,21 @@ router.post('/:reviewId/images', requireAuth, async (req, res, next) => {
 router.put('/:reviewId', requireAuth, async (req, res, next) => {
     const { reviewId } = req.params;
     const { review, stars } = req.body;
-    const userId = req.user.id; // Assuming the user ID is stored in req.user
+    const userId = req.user.id;
+
+    const errors = {};
 
     // Validate the input
     if (!review) {
-        return res.status(400).json({ message: "Bad Request", errors: { review: "Review text is required" } });
+        errors.review = "Review text is required";
     }
     if (!stars || stars < 1 || stars > 5) {
-        return res.status(400).json({ message: "Bad Request", errors: { stars: "Stars must be an integer from 1 to 5" } });
+        errors.stars = "Stars must be an integer from 1 to 5";
+    }
+
+    // Check if there are any validation errors
+    if (Object.keys(errors).length > 0) {
+        return res.status(400).json({ message: "Bad Request", errors });
     }
 
     try {
