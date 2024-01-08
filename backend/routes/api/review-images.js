@@ -17,9 +17,14 @@ router.delete('/:imageId', requireAuth, async (req, res) => {
             }
         });
 
-        // Check if image exists
-        if (!image && !image.Review) {
+         // Check if the image exists
+         if (!image) {
             return res.status(404).json({ message: "Review Image couldn't be found" });
+        }
+
+         // Check if the associated review is found
+         if (!image.Review) {
+            return res.status(404).json({ message: "Associated review not found" });
         }
 
         // Check if the image belongs to a review written by the current user

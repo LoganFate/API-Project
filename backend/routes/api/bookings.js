@@ -37,7 +37,7 @@ router.get('/current', requireAuth, async (req, res, next) => {
                     lat: spot.lat,
                     lng: spot.lng,
                     name: spot.name,
-                    price: spot.price,
+                    price: parseFloat(spot.price),
                     previewImage: previewImage ? previewImage.url : null // Include only the URL
                 };
             }

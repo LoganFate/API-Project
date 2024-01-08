@@ -119,33 +119,32 @@ router.get('/current', requireAuth, async (req, res) => {
     const currentUserId = req.user.id;
 
     try {
-        // Fetching spots without eager loading
         const spots = await Spot.findAll({
             where: { ownerId: currentUserId },
             attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'description', 'price', 'createdAt', 'updatedAt'],
             group: ['Spot.id']
         });
 
-        // Manually load associated models (lazy loading)
         for (const spot of spots) {
-            // Load Reviews for each spot if necessary
+            // Load Reviews
             const reviews = await spot.getReviews({
                 attributes: ['stars']
             });
 
-            // Calculate average rating based on loaded reviews
-            spot.dataValues.avgRating = reviews.length
-                ? reviews.reduce((acc, review) => acc + review.stars, 0) / reviews.length
-                : null;
+            // Calculate average rating
+            const totalStars = reviews.reduce((acc, review) => acc + review.stars, 0);
+            const avgRating = reviews.length ? (totalStars / reviews.length) : null;
+            spot.dataValues.avgRating = avgRating !== null ? parseFloat(avgRating.toFixed(2)) : null;
 
-            // Load SpotImages for each spot
+            // Load SpotImages
             const previewImages = await spot.getSpotImages({
                 where: { preview: true },
                 attributes: ['url'],
                 limit: 1
             });
-            // Extract the URL from the first preview image, if available
+
             spot.dataValues.previewImage = previewImages.length > 0 ? previewImages[0].url : null;
+            spot.dataValues.price = parseFloat(spot.price);
         }
 
         res.status(200).json({ Spots: spots.map(spot => spot.dataValues) });
@@ -197,7 +196,7 @@ router.get('/:spotId', async (req, res, next) => {
             lng: spot.lng,
             name: spot.name,
             description: spot.description,
-            price: spot.price,
+            price: parseFloat(spot.price),
             createdAt: spot.createdAt,
             updatedAt: spot.updatedAt,
             numReviews: numReviews,
@@ -269,7 +268,7 @@ router.post('/', requireAuth, async (req, res, next) => {
             lng: newSpot.lng,
             name: newSpot.name,
             description: newSpot.description,
-            price: newSpot.price,
+            price: parseFloat(newSpot.price),
             createdAt: newSpot.createdAt,
             updatedAt: newSpot.updatedAt
         };

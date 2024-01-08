@@ -23,15 +23,16 @@ router.get('/current', requireAuth, async (req, res) => {
                 attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'price']
             });
 
-            let previewImage = null;
             if (spot) {
                 const previewImages = await spot.getSpotImages({
                     attributes: ['url'],
                     where: { preview: true },
                     limit: 1
                 });
-
                 previewImage = previewImages.length > 0 ? previewImages[0].url : null;
+
+                // Parse the price to a number
+                spot.dataValues.price = parseFloat(spot.dataValues.price);
                 spot.dataValues.previewImage = previewImage;
             }
 
