@@ -40,6 +40,7 @@ router.get('/current', requireAuth, async (req, res) => {
                 attributes: ['id', 'url']
             });
 
+
             return {
                 id: review.id,
                 userId: review.userId,
