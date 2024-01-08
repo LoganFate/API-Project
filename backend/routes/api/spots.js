@@ -82,6 +82,7 @@ router.get('/', async (req, res) => {
           const formattedSpots = spots.map(spot => {
             const spotJson = spot.toJSON();
 
+
               // Extract the URL from the first preview image, if available
               const previewImageUrl = spotJson.previewImage.length > 0 ? spotJson.previewImage[0].url : null;
 
@@ -97,10 +98,10 @@ router.get('/', async (req, res) => {
                 lng: spotJson.lng,
                 name: spotJson.name,
                 description: spotJson.description,
-                price: spotJson.price,
+                price: parseFloat(spotJson.price),
                 createdAt: spotJson.createdAt,
                 updatedAt: spotJson.updatedAt,
-                avgRating: spotJson.avgRating, // avgRating here
+                avgRating: spotJson.avgRating !== null ? parseFloat(spotJson.avgRating) : null, // avgRating here
                 previewImage: previewImageUrl, // previewImage here
             };
         });
