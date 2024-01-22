@@ -5,3 +5,42 @@
 .hidden {
   display: none;
 }
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  /* Add more styles as needed */
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  margin-right: 20px; /* Adjust spacing as needed */
+}
+
+.logo {
+  height: 50px; /* Adjust size as needed */
+  /* Add more styles as needed */
+}
+
+.profile-dropdown {
+  position: absolute;
+  top: 100%; /* Adjust as needed */
+  right: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+  z-index: 10;
+}
+
+.profile-dropdown li {
+  margin: 10px 0;
+}

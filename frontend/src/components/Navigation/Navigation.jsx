@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+// import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import OpenModalButton from '../OpenModalButton';
@@ -33,14 +33,19 @@ function Navigation({ isLoaded }) {
       </>
     );
 
-  return (
-    <ul>
-      <li>
-        <NavLink to="/">Home</NavLink>
-      </li>
-      {isLoaded && sessionLinks}
-    </ul>
-  );
-}
+    return (
+      <nav>
+        <ul>
+          <li>
+            {/* <NavLink to="/">
+              <img src="/favicon.ico" alt="Logo" className="logo" />
+            </NavLink> */}
+          </li>
+          {/* Rest of the navigation items */}
+        </ul>
+        {isLoaded && sessionLinks}
+      </nav>
+    );
+  }
 
 export default Navigation;
