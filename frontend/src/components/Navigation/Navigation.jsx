@@ -39,6 +39,9 @@ function Navigation({ isLoaded }) {
         <NavLink to="/">Home</NavLink>
       </li>
       {isLoaded && sessionLinks}
+      <nav>
+      <ProfileButton user={user} />
+      </nav>
     </ul>
   );
 }
