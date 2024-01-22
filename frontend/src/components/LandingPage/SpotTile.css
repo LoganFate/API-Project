@@ -1,9 +1,37 @@
+
+
 .spot-tile {
-    border: 1px solid;
-    border-color: black;
+    /* Styles for the overall tile */
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    text-decoration: none; /* To remove default link styles */
+    color: inherit; /* To ensure text inherits the parent color */
 }
 
-.spot-tile img {
-    border: 1px solid;
-    border-color: black;
+.spot-image {
+    /* Styles for the image */
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.spot-info {
+    /* Styles for the info section */
+    padding: 10px 0;
+}
+
+.spot-rating {
+    display: flex;
+    align-items: center;
+    color: gold; /* Or any color for the rating */
+}
+
+.spot-rating .fa-star {
+    margin-right: 5px;
+}
+
+.spot-price {
+    /* Styles for the price */
+    font-weight: bold;
 }
