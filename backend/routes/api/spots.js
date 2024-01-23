@@ -202,7 +202,7 @@ router.get('/:spotId', async (req, res, next) => {
             numReviews: numReviews,
             avgStarRating: parseFloat(avgStarRating.toFixed(1)),  // Format to one decimal place
             SpotImages: spotImages,
-            Owner: owner
+            Owner: owner,
         };
 
         // Attaching lazy loaded data to the spot object

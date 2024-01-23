@@ -8,20 +8,22 @@ const SpotDetailPage = () => {
 
   useEffect(() => {
     const fetchSpotDetails = async () => {
-      try {
-        const response = await fetch(`/api/spots/${spotId}`);
-        const data = await response.json();
-        setSpot(data);
-        const reviewsResponse = await fetch(`/api/spots/${spotId}/reviews`);
-        const reviewsData = await reviewsResponse.json();
-        setReviews(reviewsData.reviews || []);
-      } catch (error) {
-        console.error('Error fetching spot details:', error);
-      }
-    };
+        try {
+            const response = await fetch(`/api/spots/${spotId}`);
+            const data = await response.json();
+            setSpot(data);
 
+            const reviewsResponse = await fetch(`/api/spots/${spotId}/reviews`);
+            const reviewsData = await reviewsResponse.json();
+            if (reviewsData && reviewsData.Reviews) {
+                setReviews(reviewsData.Reviews);
+            }
+        } catch (error) {
+            console.error('Error fetching spot details:', error);
+        }
+    };
     fetchSpotDetails();
-  }, [spotId]);
+}, [spotId]);
 
   if (!spot) {
     return <div>Loading...</div>;
@@ -54,7 +56,7 @@ const SpotDetailPage = () => {
           ))}
         </div>
       </div>
-      <p>Hosted by {spot.Owner.firstName}</p>
+      <p>Hosted by {spot.Owner?.firstName}</p>
       <p>{spot.description}</p>
       {/* Callout information box */}
       <div className="callout-info">
@@ -65,23 +67,20 @@ const SpotDetailPage = () => {
       </div>
   {/* Reviews section */}
   <div className="reviews-section">
-        <h2>Reviews</h2>
-        {reviews.length === 0 ? (
-          <p>No reviews yet.</p>
-        ) : (
-          reviews.map((review) => (
+    <h2>Reviews</h2>
+    {reviews.length > 0 ? (
+        reviews.map(review => (
             <div key={review.id} className="review">
-              <p className="reviewer-name">{review.User.firstName}</p>
-              <p className="review-date">
-                {new Date(review.createdAt).toLocaleString('default', { month: 'long', year: 'numeric' })}
-              </p>
-              <p className="review-comment">{review.comment}</p>
+                <p>{review.User.firstName} - {new Date(review.createdAt).toLocaleString('default', { month: 'long', year: 'numeric' })}</p>
+                <p>{review.review}</p>
             </div>
-          ))
-        )}
-      </div>
-    </div>
-  );
+        ))
+    ) : (
+        <p>No reviews yet</p>
+    )}
+</div>
+  </div>
+);
 };
 
 export default SpotDetailPage;
