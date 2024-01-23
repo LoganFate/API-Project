@@ -23,8 +23,11 @@ const SpotDetailPage = () => {
     return <div>Loading...</div>;
   }
 
-
   const otherImages = spot.otherImages || [];
+
+  // Determine the display rating
+  const displayRating = spot.avgRating ? `${spot.avgRating.toFixed(1)}` : "New";
+  const reviewCount = spot.numReviews || 0;
 
   const handleReserveClick = () => {
     alert("Feature coming soon");
@@ -47,6 +50,7 @@ const SpotDetailPage = () => {
       {/* Callout information box */}
       <div className="callout-info">
         <p>Price: ${spot.price} / night</p>
+        <p>Rating: <i className="fas fa-star"></i> {displayRating} ({reviewCount} reviews)</p>
         <button className="reserve-button" onClick={handleReserveClick}>Reserve</button>
       </div>
     </div>
