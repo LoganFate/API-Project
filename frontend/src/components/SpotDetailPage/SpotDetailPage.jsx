@@ -26,7 +26,7 @@ const SpotDetailPage = () => {
   const otherImages = spot.otherImages || [];
 
   // Determine the display rating
-  const displayRating = spot.avgRating ? `${spot.avgRating.toFixed(1)}` : "New";
+  const displayRating = spot.avgStarRating ? `${spot.avgStarRating.toFixed(1)}` : "New";
   const reviewCount = spot.numReviews || 0;
 
   const handleReserveClick = () => {
