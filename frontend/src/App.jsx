@@ -19,7 +19,7 @@ function Layout() {
     <>
       <header>
         <NavLink to="/">
-          <img src="/favicon.ico" alt="Logo" className="logo" />
+          <img src="/CozmicLogo.png" alt="Logo" className="logo" />
         </NavLink>
         <Navigation isLoaded={isLoaded} />
       </header>

@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const SpotDetailPage = () => {
   const { spotId } = useParams();
   const [spot, setSpot] = useState(null);
   const [reviews, setReviews] = useState([]);
+  const sessionUser = useSelector(state => state.session.user);
 
   useEffect(() => {
     const fetchSpotDetails = async () => {
@@ -16,7 +18,7 @@ const SpotDetailPage = () => {
             const reviewsResponse = await fetch(`/api/spots/${spotId}/reviews`);
             const reviewsData = await reviewsResponse.json();
             if (reviewsData && reviewsData.Reviews) {
-                setReviews(reviewsData.Reviews);
+              setReviews(reviewsData.Reviews || []);
             }
         } catch (error) {
             console.error('Error fetching spot details:', error);
@@ -34,6 +36,8 @@ const SpotDetailPage = () => {
   // Determine the display rating
   const displayRating = spot.avgStarRating ? `${spot.avgStarRating.toFixed(1)}` : "New";
   const reviewCount = spot.numReviews || 0;
+  const isUserLoggedIn = sessionUser != null;
+  const isUserNotOwner = sessionUser?.id !== spot.ownerId;
 
   let reviewText = '';
   if (reviewCount > 0) {
@@ -67,17 +71,17 @@ const SpotDetailPage = () => {
       </div>
   {/* Reviews section */}
   <div className="reviews-section">
-    <h2>Reviews</h2>
-    {reviews.length > 0 ? (
-        reviews.map(review => (
+        <h2>Reviews</h2>
+        {reviews.length === 0 && isUserLoggedIn && isUserNotOwner ? (
+          <p>Be the first to post a review!</p>
+        ) : (
+          reviews.map(review => (
             <div key={review.id} className="review">
-                <p>{review.User.firstName} - {new Date(review.createdAt).toLocaleString('default', { month: 'long', year: 'numeric' })}</p>
-                <p>{review.review}</p>
+              <p>{review.User.firstName} - {new Date(review.createdAt).toLocaleString('default', { month: 'long', year: 'numeric' })}</p>
+              <p>{review.review}</p>
             </div>
-        ))
-    ) : (
-        <p>No reviews yet</p>
-    )}
+          ))
+        )}
 </div>
   </div>
 );
