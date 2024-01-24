@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { fetchUserSpots, deleteSpot } from '../../store/Actions/spotActions';
 import SpotTile from '../LandingPage/SpotTile';
 import ConfirmDeleteModal from './ConfirmDeleteModal';
@@ -12,6 +12,15 @@ const ManageSpotsPage = () => {
     const sessionUser = useSelector(state => state.session.user);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [selectedSpot, setSelectedSpot] = useState(null);
+    const history = useHistory();
+
+    const handleUpdateSpot = (spotId) => {
+        // Find the spot data by spotId
+        const spotToUpdate = userSpots.find(spot => spot.id === spotId);
+        // Navigate to Update Spot form with the selected spot data
+        history.push(`/spots/${spotId}`, { spot: spotToUpdate });
+    };
+
 
 
     const handleConfirmDelete = (spotId) => {
@@ -21,11 +30,6 @@ const ManageSpotsPage = () => {
 
     const handleCancelDelete = () => {
         setShowDeleteModal(false);
-    };
-
-    const handleUpdateSpot = (spotId) => {
-        console.log(`Update Spot: ${spotId}`);
-        // Add logic for updating a spot
     };
 
     const handleDeleteSpot = (spotId, spotName) => {
