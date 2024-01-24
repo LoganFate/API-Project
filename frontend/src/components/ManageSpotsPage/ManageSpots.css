@@ -1,0 +1,52 @@
+.confirmation-modal {
+    position: fixed; /* Use fixed instead of absolute */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* This centers the modal */
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* Ensure it's above other content */
+    width: auto; /* Adjust based on content or set a specific width */
+    max-width: 600px; /* Maximum width */
+    box-sizing: border-box; /* Include padding and border in the width */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+
+  .confirmation-modal h2 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+  }
+
+  .confirmation-modal p {
+    margin-bottom: 30px;
+  }
+
+  .confirmation-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* space between buttons */
+  }
+
+  .confirm-delete-button, .cancel-delete-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+  }
+
+  .confirm-delete-button {
+    background-color: red;
+    color: white;
+  }
+
+  .cancel-delete-button {
+    background-color: darkgrey;
+    color: white;
+  }
