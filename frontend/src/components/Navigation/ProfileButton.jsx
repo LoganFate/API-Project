@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import * as sessionActions from '../../store/session';
 import OpenModalMenuItem from './OpenModalMenuItem'
 import LoginFormModal from '../LoginFormModal/LoginFormModal'
@@ -7,6 +8,7 @@ import SignupFormModal from '../SignupFormModal/SignupFormModal'
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
 
@@ -35,6 +37,11 @@ function ProfileButton({ user }) {
     setShowMenu(false);
   };
 
+  const handleManageSpotsClick = () => {
+    navigate('/spots/current'); // Adjust the path to your route
+    setShowMenu(false);
+  };
+
   const ulClassName = `profile-dropdown" ${showMenu ? "" : " hidden"}`;
 
   return (
@@ -52,6 +59,9 @@ function ProfileButton({ user }) {
         <li>
           <button onClick={logout}>Log Out</button>
         </li>
+        <li>
+              <button onClick={handleManageSpotsClick}>Manage Spots</button>
+            </li>
         </>
         ) : (
           <>

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { createSpot } from '../../store/spotActions';
+import { createSpot } from '../../store/Actions/spotActions';
 
 function CreateSpotForm() {
     const [country, setCountry] = useState('');
