@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchUserSpots } from '../../store/Actions/spotActions';
+import { fetchUserSpots, deleteSpot } from '../../store/Actions/spotActions';
 import SpotTile from '../LandingPage/SpotTile';
 import ConfirmDeleteModal from './ConfirmDeleteModal';
 import './ManageSpots.css';
@@ -14,11 +14,10 @@ const ManageSpotsPage = () => {
     const [selectedSpot, setSelectedSpot] = useState(null);
 
 
-    const handleConfirmDelete = () => {
-        console.log(`Deleting spot: ${selectedSpot.id}`);
+    const handleConfirmDelete = (spotId) => {
+        dispatch(deleteSpot(spotId));
         setShowDeleteModal(false);
-        // Add logic to delete the spot
-    };
+      };
 
     const handleCancelDelete = () => {
         setShowDeleteModal(false);
@@ -58,11 +57,11 @@ const ManageSpotsPage = () => {
                 ))}
             </div>
    {showDeleteModal && selectedSpot &&
-    <ConfirmDeleteModal
-        spotName={selectedSpot.name}
-        onConfirm={() => handleConfirmDelete(selectedSpot.id)}
-        onCancel={handleCancelDelete}
-    />
+   <ConfirmDeleteModal
+   spotName={selectedSpot.name}
+   onConfirm={() => handleConfirmDelete(selectedSpot.id)}
+   onCancel={handleCancelDelete}
+ />
 }
         </div>
     );

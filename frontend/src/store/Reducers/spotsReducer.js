@@ -1,4 +1,4 @@
-import { SET_USER_SPOTS } from '../Actions/spotActions';
+import { SET_USER_SPOTS, DELETE_SPOT } from '../Actions/spotActions';
 
 const ADD_SPOT = 'spots/ADD_SPOT';
 const FETCH_SPOT_DETAILS = 'spots/FETCH_SPOT_DETAILS';
@@ -41,6 +41,13 @@ const spotsReducer = (state = initialState, action) => {
                 ...state,
                 userSpots: action.payload,
             };
+            case DELETE_SPOT:
+              const updatedUserSpots = state.userSpots.filter(spot => spot.id !== action.payload);
+              return {
+                ...state,
+                userSpots: updatedUserSpots
+              };
+
     default:
       return state;
   }

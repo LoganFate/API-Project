@@ -4,6 +4,25 @@ import { csrfFetch } from '../csrf';
 export const ADD_SPOT = 'spots/ADD_SPOT';
 export const FETCH_SPOT_DETAILS = 'spots/FETCH_SPOT_DETAILS';
 export const SET_USER_SPOTS = 'spots/SET_USER_SPOTS'
+export const DELETE_SPOT = 'spots/DELETE_SPOT';
+
+export const deleteSpot = (spotId) => async (dispatch) => {
+  try {
+    const response = await csrfFetch(`/api/spots/${spotId}`, {
+      method: 'DELETE'
+    });
+
+    if (response.ok) {
+      dispatch({
+        type: DELETE_SPOT,
+        payload: spotId
+      });
+    }
+  } catch (error) {
+    console.error('Error deleting spot:', error);
+    // Handle error appropriately
+  }
+};
 
 export const setUserSpots = (spots) => {
   return {
