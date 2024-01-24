@@ -1,5 +1,5 @@
 // reviewsReducer.js
-import { ADD_REVIEW, SET_REVIEWS } from '../Actions/reviewActions';
+import { ADD_REVIEW, SET_REVIEWS, DELETE_REVIEW } from '../Actions/reviewActions';
 
 const initialState = {
   // Your initial state
@@ -19,6 +19,11 @@ const reviewsReducer = (state = initialState, action) => {
             ...state,
             reviews: action.payload
         }
+        case DELETE_REVIEW:
+          return {
+            ...state,
+            reviews: state.reviews.filter(review => review.id !== action.payload),
+          };
     default:
       return state;
   }

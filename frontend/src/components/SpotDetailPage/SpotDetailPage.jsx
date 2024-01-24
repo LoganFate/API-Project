@@ -1,10 +1,11 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import ReviewForm from '../ReviewForm/ReviewForm';
 import { useModal } from '../../context/Modal';
-import { addReview, fetchReviews } from '../../store/Actions/reviewActions';
+import { addReview, fetchReviews, deleteReview } from '../../store/Actions/reviewActions';
 import { fetchSpotDetails } from '../../store/Actions/spotActions';
+import DeleteReviewModal from './DeleteReviewModal';
 import './SpotDetailPage.css';
 
 
@@ -16,11 +17,25 @@ const SpotDetailPage = () => {
     const spot = useSelector(state => state.spots.currentSpot);
     const reviews = useSelector(state => state.reviews.reviews);
     const sessionUser = useSelector(state => state.session.user);
+    const [showDeleteReviewModal, setShowDeleteReviewModal] = useState(false);
+    const [selectedReviewId, setSelectedReviewId] = useState(null);
 
   useEffect(() => {
     dispatch(fetchSpotDetails(spotId)); // Fetch spot details from Redux action
     dispatch(fetchReviews(spotId)); // Fetch reviews from Redux action
   }, [dispatch, spotId, sessionUser?.id]);
+
+const handleConfirmDeleteReview = async () => {
+    await dispatch(deleteReview(selectedReviewId));
+    setShowDeleteReviewModal(false);
+    // Refetch reviews to update the list
+    dispatch(fetchReviews(spotId));
+};
+
+
+const handleCancelDeleteReview = () => {
+    setShowDeleteReviewModal(false);
+};
 
   const handleReviewSubmission = async (reviewData) => {
     try {
@@ -61,6 +76,13 @@ const handlePostReviewClick = () => {
     );
 };
 
+const handleOpenDeleteReviewModal = (reviewId) => {
+    setSelectedReviewId(reviewId);
+    setShowDeleteReviewModal(true);
+};
+
+
+
 
 const isUserLoggedIn = sessionUser != null;
 const isUserNotOwner = sessionUser?.id !== spot.ownerId;
@@ -98,12 +120,21 @@ return (
             <div key={review.id} className="review">
                 <p>{review?.User?.firstName} - {new Date(review.createdAt).toLocaleString('default', { month: 'long', year: 'numeric' })}</p>
                 <p>{review.review}</p>
+                {sessionUser?.id === review.userId && (
+                            <button onClick={() => handleOpenDeleteReviewModal(review.id)}>Delete</button>
+                        )}
             </div>
         ))
     )}
 </div>
-  </div>
-);
+{showDeleteReviewModal && (
+                <DeleteReviewModal
+                    onConfirm={handleConfirmDeleteReview}
+                    onCancel={handleCancelDeleteReview}
+                />
+            )}
+        </div>
+    );
 };
 
 

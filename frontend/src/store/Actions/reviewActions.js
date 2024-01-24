@@ -4,6 +4,19 @@ import { csrfFetch } from '../csrf';
 // Action types
 export const ADD_REVIEW = 'reviews/ADD_REVIEW';
 export const SET_REVIEWS = 'reviews/SET_REVIEWS';
+export const DELETE_REVIEW = 'reviews/DELETE_REVIEW';
+
+export const deleteReview = (reviewId) => async dispatch => {
+  try {
+    await csrfFetch(`/api/reviews/${reviewId}`, { method: 'DELETE' });
+    dispatch({
+      type: DELETE_REVIEW,
+      payload: reviewId,
+    });
+  } catch (error) {
+    console.error('Error deleting review', error)
+  }
+};
 
 export const setReviews = (reviews) => ({
     type: SET_REVIEWS,

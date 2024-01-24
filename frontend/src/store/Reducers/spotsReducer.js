@@ -41,12 +41,13 @@ const spotsReducer = (state = initialState, action) => {
                 ...state,
                 userSpots: action.payload,
             };
-            case DELETE_SPOT:
+            case DELETE_SPOT: {
               const updatedUserSpots = state.userSpots.filter(spot => spot.id !== action.payload);
               return {
                 ...state,
                 userSpots: updatedUserSpots
               };
+            }
 
     default:
       return state;
