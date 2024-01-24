@@ -22,7 +22,7 @@ const LandingPage = () => {
 
     return (
         <div>
-            <h1>All Spots</h1>
+            <h1>Cozmic - Cabinz</h1>
             <div className="spot-list">
                 {spots.map(spot => (
                     <SpotTile key={spot.id} spot={spot} />

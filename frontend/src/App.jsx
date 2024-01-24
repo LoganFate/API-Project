@@ -4,6 +4,7 @@ import { Outlet, createBrowserRouter, RouterProvider, NavLink } from 'react-rout
 import Navigation from './components/Navigation/Navigation';
 import LandingPage from './components/LandingPage/LandingPage';
 import SpotDetailPage from './components/SpotDetailPage/SpotDetailPage';
+import CreateSpotForm from './components/CreateSpotForm';
 import * as sessionActions from './store/session';
 import './index.css';
 
@@ -40,8 +41,11 @@ const router = createBrowserRouter([
       {
         path: '/spots/:spotId',
         element: <SpotDetailPage />
+      },
+      {
+        path: '/spots/new',
+        element: <CreateSpotForm />
       }
-
     ]
   }
 ]);

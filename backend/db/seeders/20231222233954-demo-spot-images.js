@@ -12,7 +12,7 @@ module.exports = {
     await SpotImage.bulkCreate([
       {
         spotId: 1, // Replace with actual spot IDs
-        url: 'http://example.com/spot-image-1.jpg',
+        url: '/SuperNova.png',
         preview: true, // or false depending on your need
         createdAt: new Date(),
         updatedAt: new Date()

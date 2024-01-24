@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-
+import './SpotDetailPage.css'
 const SpotDetailPage = () => {
   const { spotId } = useParams();
   const [spot, setSpot] = useState(null);
   const [reviews, setReviews] = useState([]);
   const sessionUser = useSelector(state => state.session.user);
+
 
   useEffect(() => {
     const fetchSpotDetails = async () => {
@@ -31,7 +32,10 @@ const SpotDetailPage = () => {
     return <div>Loading...</div>;
   }
 
-  const otherImages = spot.otherImages || [];
+  const mainImageUrl = spot.SpotImages && spot.SpotImages.length > 0
+  ? spot.SpotImages[0].url
+  : spot.mainImageUrl ; // URL of the main image
+const otherImages = spot.SpotImages.slice(1).map(image => image.url); // URLs of other images
 
   // Determine the display rating
   const displayRating = spot.avgStarRating ? `${spot.avgStarRating.toFixed(1)}` : "New";
@@ -53,13 +57,13 @@ const SpotDetailPage = () => {
       <h1>{spot.name}</h1>
       <p>Location: {spot.city}, {spot.state}, {spot.country}</p>
       <div className="spot-images">
-        <img src={spot.mainImageUrl} alt="Main" className="main-image" />
-        <div className="small-images">
-          {otherImages.map((imgUrl, index) => (
-            <img key={index} src={imgUrl} alt={`Additional ${index}`} />
-          ))}
-        </div>
-      </div>
+  <img src={mainImageUrl} alt="Main" className="main-image" />
+  <div className="small-images">
+    {otherImages.map((imgUrl, index) => (
+      <img key={index} src={imgUrl} alt={`Additional ${index}`} />
+    ))}
+  </div>
+</div>
       <p>Hosted by {spot.Owner?.firstName}</p>
       <p>{spot.description}</p>
       {/* Callout information box */}

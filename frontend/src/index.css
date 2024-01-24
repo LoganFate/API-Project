@@ -1,6 +1,8 @@
 /* TODO: Add sitewide styles */
 .logo {
-    height: 100px; /* Adjust the size as needed */
+  padding-left: 20px;
+  padding-top: 20px;
+    height: 80px; /* Adjust the size as needed */
     /* Additional styling for the logo */
   }
   body {
