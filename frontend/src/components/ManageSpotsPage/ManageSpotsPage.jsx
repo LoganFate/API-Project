@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { fetchUserSpots, deleteSpot } from '../../store/Actions/spotActions';
 import SpotTile from '../LandingPage/SpotTile';
 import ConfirmDeleteModal from './ConfirmDeleteModal';
@@ -12,13 +12,11 @@ const ManageSpotsPage = () => {
     const sessionUser = useSelector(state => state.session.user);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [selectedSpot, setSelectedSpot] = useState(null);
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const handleUpdateSpot = (spotId) => {
-        // Find the spot data by spotId
         const spotToUpdate = userSpots.find(spot => spot.id === spotId);
-        // Navigate to Update Spot form with the selected spot data
-        history.push(`/spots/${spotId}`, { spot: spotToUpdate });
+        navigate(`/spots/${spotId}/update`, { state: { spot: spotToUpdate } });
     };
 
 
@@ -56,7 +54,7 @@ const ManageSpotsPage = () => {
             <h1>Manage Spots</h1>
             <div className='spot-tiles'>
                 {userSpots.map(spot => (
-                   <SpotTile key={spot.id} spot={spot} onUpdate={handleUpdateSpot} onDelete={() => handleDeleteSpot(spot.id, spot.name)} />
+                  <SpotTile key={spot.id} spot={spot} onUpdate={() => handleUpdateSpot(spot.id)} onDelete={() => handleDeleteSpot(spot.id, spot.name)} />
 
                 ))}
             </div>

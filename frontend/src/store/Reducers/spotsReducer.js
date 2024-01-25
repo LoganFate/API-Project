@@ -48,6 +48,14 @@ const spotsReducer = (state = initialState, action) => {
                 userSpots: updatedUserSpots
               };
             }
+            case 'spots/UPDATE_SPOT':
+            return {
+              ...state,
+              allSpots: {
+                ...state.allSpots,
+                [action.payload.id]: action.payload,
+              },
+            };
 
     default:
       return state;

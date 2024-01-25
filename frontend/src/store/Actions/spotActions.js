@@ -5,6 +5,34 @@ export const ADD_SPOT = 'spots/ADD_SPOT';
 export const FETCH_SPOT_DETAILS = 'spots/FETCH_SPOT_DETAILS';
 export const SET_USER_SPOTS = 'spots/SET_USER_SPOTS'
 export const DELETE_SPOT = 'spots/DELETE_SPOT';
+export const UPDATE_SPOT = 'spots/UPDATE_SPOT';
+
+export const updateSpot = (spotId, spotData) => async dispatch => {
+  try {
+    const response = await csrfFetch(`/api/spots/${spotId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(spotData),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || 'Error updating spot');
+    }
+
+    const updatedSpot = await response.json();
+    dispatch({
+      type: UPDATE_SPOT,
+      payload: updatedSpot,
+    });
+    return updatedSpot;
+  } catch (error) {
+    console.error('Error updating spot:', error);
+    throw error; // Re-throw to handle it in the calling component
+  }
+};
 
 export const deleteSpot = (spotId) => async (dispatch) => {
   try {
