@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { updateSpot } from '../../store/Actions/spotActions';
+import './UpdateSpotForm.css'
 
 const UpdateSpotForm = () => {
     const { spotId } = useParams();
@@ -59,7 +60,7 @@ const UpdateSpotForm = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className='update-spot-form'>
             <h1>Update Your Spot</h1>
           {/* Location Section */}
           <section>

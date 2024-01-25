@@ -22,3 +22,11 @@ confirmation-modal {
     color: white;
     /* Other button styles */
 }
+
+#confirm {
+    color: black;
+}
+
+#sure {
+    color: black;
+}
