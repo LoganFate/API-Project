@@ -24,7 +24,7 @@
 }
 
 /* Labels and text for notes */
-.create-spot-form label, p {
+.create-spot-form label, .create-spot-form p {
     display: block;
     margin: 5px 0;
     color: #666;
