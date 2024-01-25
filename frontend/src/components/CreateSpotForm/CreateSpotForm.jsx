@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { createSpot } from '../../store/Actions/spotActions';
+import './CreateSpotForm.css'
 
 function CreateSpotForm() {
     const [country, setCountry] = useState('');
@@ -91,7 +92,7 @@ function CreateSpotForm() {
     }, []);
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="create-spot-form">
             <h1>Create a New Spot</h1>
             {/* Location section */}
             <section>

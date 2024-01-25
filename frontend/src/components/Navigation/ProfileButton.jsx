@@ -4,7 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import * as sessionActions from '../../store/session';
 import OpenModalMenuItem from './OpenModalMenuItem'
 import LoginFormModal from '../LoginFormModal/LoginFormModal'
-import SignupFormModal from '../SignupFormModal/SignupFormModal'
+import SignupFormModal from '../SignupFormModal/SignupFormModal';
+import './Navigation.css';
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -53,15 +54,14 @@ function ProfileButton({ user }) {
         {user ? (
           <>
           <li>Hello, {user.firstName}</li>
-        <li>{user.username}</li>
-        <li>{user.firstName} {user.lastName}</li>
         <li>{user.email}</li>
-        <li>
-          <button onClick={logout}>Log Out</button>
-        </li>
         <li>
               <button onClick={handleManageSpotsClick}>Manage Spots</button>
             </li>
+        <li>
+          <button onClick={logout}>Log Out</button>
+        </li>
+
         </>
         ) : (
           <>

@@ -10,29 +10,38 @@ body {
 	top: -100px;
 }
 .logo {
-	width: 105px;
-	height: 105px;
-	padding: 15px 20px;
+	width: 150px;
+	height: 150px;
+  border-radius: 20%;
+  padding: 5px 5px;
 }
+
 .logo:hover {
 	background-color: gold;
 }
 
-.profile-button {
+button {
 	background-color: #f5f5f5;
 	width: 80px;
-	height: 40px;
+	height: 60px;
 	margin-right: 50px;
 	margin-top: 30px;
-	border-radius: 30px;
+	border-radius: 15px;
 	/* border-color: #000000; */
 	display: flex;
-	justify-content: flex-end;
+	justify-content: center;
 	align-items: center;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: gold;
 }
 
 li {
 	list-style-type: none;
+  color: white;
+
 }
 
 .profile-dropdown {
@@ -43,10 +52,19 @@ li {
 	width: 100px;
 	padding: 10px;
 	border-radius: 10px;
-	background-color: #ffffff;
+	background-color: white;
 	box-shadow: #484848 2px 2px 4px;
 }
 
 .hidden {
 	display: none;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background: #fff; /* Adjust the color to match your header */
+  /* Other styles for your header */
 }

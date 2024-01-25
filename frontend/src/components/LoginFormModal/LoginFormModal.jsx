@@ -23,6 +23,20 @@ function LoginFormModal() {
     }
   };
 
+  const handleDemoLogin = async (e) => {
+    e.preventDefault();
+    // Set the credential and password to the demo user's details
+    const demoCredential = 'demo@user.io';
+    const demoPassword = 'password';
+    setCredential(demoCredential);
+    setPassword(demoPassword);
+
+    // Dispatch the login action with the demo user's credentials
+    await dispatch(sessionActions.login({ credential: demoCredential, password: demoPassword }));
+    closeModal();
+  };
+
+
 
   return (
     <>
@@ -47,7 +61,8 @@ function LoginFormModal() {
           />
         </label>
         {error && <p className="error-message">{error}</p>}
-        <button type="submit">Log In</button>
+        <button type="submit" disabled={credential.length < 4 || password.length < 6}>Log In</button>
+        <button onClick={handleDemoLogin} type="button" className="demo-user-btn">Demo User</button>
       </form>
     </>
   );

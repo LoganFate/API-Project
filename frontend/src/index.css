@@ -1,38 +1,50 @@
 /* TODO: Add sitewide styles */
-.logo {
-  padding-left: 20px;
-  padding-top: 20px;
-    height: 160px;
-    width: 160px;
-    border-radius: 16%;
-    margin-top: 30px;
-  }
-  body {
-    background-image: url("/CosmicBackground.jpeg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    margin: 0;
-    background-color: #0e0c0c;
-  }
 
-  body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: rgba(110, 107, 107, 0.027); /* Semi-transparent white overlay */
-    z-index: -1;
-  }
 
-  h1 {
-    font-size: 68px;
-    position: relative;
-    left: 200px;
-    top: -205px;
-    margin-top: 40px;
-    padding-left: 10px;
+h1 {
   color: white;
+}
+/* Style for the header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px; /* Adjust padding for header */
+}
+@media (max-width: 768px) {
+  .spot-list {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   }
+
+  header {
+    flex-direction: column;
+  }
+}
+
+html {
+  height: 100%; /* Ensure the root element covers the full height */
+  box-sizing: border-box; /* This ensures that padding and border are included in the total width and height */
+}
+
+*, *:before, *:after {
+  box-sizing: inherit; /* Inherit box-sizing from html to ensure consistency */
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%; /* Minimum height to cover the full viewport */
+  background-image: url("/CosmicBackground.jpeg"); /* Your background image */
+  background-size: cover; /* Cover the entire viewport without stretching */
+  background-repeat: no-repeat; /* Do not repeat the background image */
+  background-attachment: fixed; /* Fix the background image in place */
+  background-color: #0e0c0c; /* A fallback background color */
+  background-position: center center; /* Center the background image */
+}
+
+/* Add this to ensure that content does not overlap with the window's bottom */
+#root {
+  min-height: 100vh; /* 100% of the viewport height */
+  display: flex;
+  flex-direction: column;
+}

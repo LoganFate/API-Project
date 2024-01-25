@@ -1,85 +1,79 @@
-.main-image {
 
-    width: 20%;
-    height: 200px;
-    border-radius: 5px;
-}
-/* Add styles for the container of small images */
-div#root {
-	margin: 100px;
-	font-family: "Montserrat", sans-serif;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-}
-.spot-info {
-	display: flex;
-	width: 100%;
-	margin: auto;
-	box-sizing: content-box;
+  #root {
+    max-width: 1000px; /* The maximum width of the content */
+    margin: auto; /* This will center your app in the middle of the page */
+    padding: 20px;
+  }
+
+  .spot-detail {
+    display: flex;
+    flex-direction: column;
     color: white;
+    font-size: 18px;
+  }
 
-	justify-content: center;
-}
-.callout-info {
-    color: white
-}
-h1 {
-	font-family: "Montserrat", sans-serif;
-}
+  /* Style for the main image */
+  .main-image {
+    width: 100%; /* Make the main image full width */
+    object-fit: cover; /* Cover the space without stretching */
+    border-radius: 5px;
+    margin-bottom: 15px;
+    max-height: 500px;
+    max-width: 500px;
 
-.small-images {
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	grid-gap: 5px;
-	padding-left: 15px;
-	/* padding: 10px; */
-	height: fit-content;
-	/* object-fit: contain; */
-}
+  }
 
-/* Add styles for each small image */
-.small-images {
-	width: 400px; /* Adjust the width as needed */
-	height: 465px; /* Adjust the initial height as needed */
-	object-fit: cover;
-	border-radius: 20px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-	border: 2px solid rgba(0, 0, 0, 0.1);
-}
-.spot-images {
-	margin-top: 15px;
-}
-/* Add styles for the large image */
-.main-image {
-	border-radius: 20px;
-	box-sizing: content-box;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-	border: 2px solid rgba(0, 0, 0, 0.1);
-	width: 100%;
-	/* height: 94%; */
-}
+  /* Style for the smaller images container */
+  .small-images {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Four images in a row */
+    grid-gap: 10px;
+  }
 
-/* Add styles for the overall layout */
-/* .large-box {
-	margin-top: 15px;
-	margin-bottom: 8px;
+  /* Style for each smaller image */
+  .small-images img {
+    width: 100%;
+    aspect-ratio: 1; /* Keep the images square */
+    object-fit: cover; /* Cover the space without stretching */
+    border-radius: 5px;
+  }
 
-} */
+  /* Style for spot information and reviews on the side */
+  .callout-info, .reviews-section {
+    background: whitesmoke;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+    color: black;
+  }
 
-/* Media queries for responsive design */
-@media (max-width: 768px) {
-	.image-list {
-		display: none; /* Hide the small images on smaller screens */
-	}
-}
+  /* Reserve button styles */
+  .reserve-button {
+    background-color: #ff5a5f;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 10px;
+    cursor: pointer;
+  }
 
-@media (min-width: 769px) {
-	.image-list {
-		display: grid;
-	}
+  /* Style for the review section */
+  .review {
+    border-bottom: 1px solid #e1e1e1; /* Light grey border for each review */
+    padding-bottom: 10px; /* Spacing after each review */
+    margin-bottom: 10px; /* Spacing between reviews */
+  }
 
-	.spot-info {
-		margin: 0 auto; /* Center the spot info horizontally */
-	}
+  /* Media query for responsive adjustments */
+  @media (max-width: 768px) {
+    .small-images {
+      grid-template-columns: repeat(2, 1fr); /* Two images in a row on smaller screens */
+    }
+  }
+
+  /* Additional media queries can be added for further responsive adjustments */
+.reviews-section {
+    color: black;
 }
