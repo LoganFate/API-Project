@@ -13,15 +13,15 @@ module.exports = {
     await Spot.bulkCreate([
       {
         ownerId: 1,  // Replace with actual user IDs
-        address: '123 Demo Street',
-        city: 'Demoville',
-        state: 'DS',
-        country: 'Demo Country',
-        lat: 23.456,
-        lng: -123.456,
-        name: 'Demo Spot 1',
-        description: 'A lovely demo spot',
-        price: 100,
+        address: 'NGC 5461',
+        city: 'Pinwheel Galaxy',
+        state: 'Dimension C137',
+        country: 'Central Finite Curve',
+        lat: 54.777,
+        lng: -57.492,
+        name: 'SN 2023ixf',
+        description: 'The nearest known supernova to our earth...',
+        price: 114979,
         createdAt: new Date(),
         updatedAt: new Date()
       },

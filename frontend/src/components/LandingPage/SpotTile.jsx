@@ -15,7 +15,7 @@ const SpotTile = ({ spot, onUpdate, onDelete }) => {
         <NavLink to={`/spots/${spot.id}`} className="spot-tile" title={spot.name}>
             <img src={previewImage} alt={spot.name || 'Spot'} className="spot-thumbnail" />
             <div className="spot-info">
-                <p>{`${spot.city}, ${spot.state}`}</p>
+                <p id="spot-location">{`${spot.city}, ${spot.state}`}</p>
                 <p className="spot-rating">
                     <i className="fas fa-star"></i> {/* FontAwesome star icon */}
                     {` Rating: ${displayRating}`}

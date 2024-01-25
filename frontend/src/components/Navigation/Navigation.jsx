@@ -41,12 +41,14 @@ function Navigation({ isLoaded }) {
   );
 
   return (
+    <div className='nav-links'>
     <nav>
       <ul>
         {/* Logo and other navigation items */}
         {isLoaded && sessionLinks}
       </ul>
     </nav>
+    </div>
   );
 }
 

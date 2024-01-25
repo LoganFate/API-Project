@@ -22,7 +22,7 @@ function Layout() {
     <>
       <header>
         <NavLink to="/">
-          <img src="/CosCabLogo.png" alt="Logo" className="logo" />
+          <img src="/CosCabLogo.jpg" alt="Logo" className="logo" />
         </NavLink>
         <Navigation isLoaded={isLoaded} />
       </header>

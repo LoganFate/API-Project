@@ -2,16 +2,18 @@
 .logo {
   padding-left: 20px;
   padding-top: 20px;
-    height: 80px; /* Adjust the size as needed */
-    /* Additional styling for the logo */
+    height: 160px;
+    width: 160px;
+    border-radius: 16%;
+    margin-top: 30px;
   }
   body {
-    background-image: url("/CosmicBackground.png");
+    background-image: url("/CosmicBackground.jpeg");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
     margin: 0;
-    background-color: #f4f4f4;
+    background-color: #0e0c0c;
   }
 
   body::before {
@@ -21,6 +23,16 @@
     right: 0;
     bottom: 0;
     left: 0;
-    background: rgba(255, 255, 255, 0.5); /* Semi-transparent white overlay */
+    background: rgba(110, 107, 107, 0.027); /* Semi-transparent white overlay */
     z-index: -1;
+  }
+
+  h1 {
+    font-size: 68px;
+    position: relative;
+    left: 200px;
+    top: -205px;
+    margin-top: 40px;
+    padding-left: 10px;
+  color: white;
   }
