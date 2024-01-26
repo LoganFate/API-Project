@@ -229,8 +229,12 @@ router.post('/', requireAuth, async (req, res, next) => {
         if (!city) validationErrors.city = "City is required";
         if (!state) validationErrors.state = "State is required";
         if (!country) validationErrors.country = "Country is required";
-        if (lat == null || lat < -90 || lat > 90) validationErrors.lat = "Latitude must be within -90 and 90";
-        if (lng == null || lng < -180 || lng > 180) validationErrors.lng = "Longitude must be within -180 and 180";
+        if (lat < -90 || lat > 90) {
+        validationErrors.lat = "Latitude must be within -90 and 90";
+    }
+    if  (lng < -180 || lng > 180) {
+        validationErrors.lng = "Longitude must be within -180 and 180";
+    }
         if (!name || name.length > 50) validationErrors.name = "Name must be less than 50 characters";
         if (!description) validationErrors.description = "Description is required";
         if (!price || price <= 0) validationErrors.price = "Price per day must be a positive number";
@@ -264,8 +268,8 @@ router.post('/', requireAuth, async (req, res, next) => {
             city: newSpot.city,
             state: newSpot.state,
             country: newSpot.country,
-            lat: newSpot.lat,
-            lng: newSpot.lng,
+            lat: newSpot.lat || null,
+            lng: newSpot.lng || null,
             name: newSpot.name,
             description: newSpot.description,
             price: parseFloat(newSpot.price),
@@ -276,7 +280,13 @@ router.post('/', requireAuth, async (req, res, next) => {
 
         return res.status(201).json(spotResponse);
     } catch (error) {
-       return next (error);
+        if (error instanceof Sequelize.ValidationError) {
+            const validationErrors = error.errors.map(e => ({ field: e.path, message: e.message }));
+            return res.status(400).json({ message: "Validation error", errors: validationErrors });
+        } else {
+            console.error('Server Error:', error);
+            return res.status(500).json({ message: "Internal server error", error: error.message });
+        }
     }
 });
 
@@ -356,8 +366,8 @@ router.put('/:spotId', requireAuth, async (req, res, next) => {
         spot.city = city;
         spot.state = state;
         spot.country = country;
-        spot.lat = lat;
-        spot.lng = lng;
+        spot.lat = lat || null;
+        spot.lng = lng || null;
         spot.name = name;
         spot.description = description;
         spot.price = price;

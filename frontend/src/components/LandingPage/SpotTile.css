@@ -46,6 +46,11 @@
      /* Background color for the header */
   }
 
+  #LpTitle {
+    color: whitesmoke;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
 
 
   /* Responsive layout adjustments */

@@ -7,7 +7,7 @@ h1 {
 /* Style for the header */
 header {
   display: flex;
-  justify-content: space-between;
+
   align-items: center;
   padding: 0 20px; /* Adjust padding for header */
 }
@@ -47,4 +47,9 @@ body {
   min-height: 100vh; /* 100% of the viewport height */
   display: flex;
   flex-direction: column;
+}
+
+#LogoTitle {
+  display: flex;
+  flex-direction: row;
 }

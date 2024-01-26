@@ -20,10 +20,11 @@ function Layout() {
 
   return (
     <>
-      <header>
+      <header id='LogoTitle'>
         <NavLink to="/">
           <img src="/CosCabLogo.jpg" alt="Logo" className="logo" />
         </NavLink>
+        <p id='CosTitle'>CosmicCabins</p>
         <Navigation isLoaded={isLoaded} />
       </header>
       {isLoaded && <Outlet />}

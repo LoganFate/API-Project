@@ -4,7 +4,7 @@ body {
 
 .header-ul {
 	display: flex;
-	justify-content: space-between;
+
 	padding: 0;
 	position: relative;
 	top: -100px;
@@ -50,7 +50,6 @@ li {
 	/* border: 1px solid black; */
 	right: 50px;
 	width: 100px;
-	padding: 10px;
 	border-radius: 10px;
 	background-color: white;
 	box-shadow: #484848 2px 2px 4px;
@@ -62,9 +61,20 @@ li {
 
 .header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
   background: #fff; /* Adjust the color to match your header */
   /* Other styles for your header */
+}
+
+#CosTitle {
+	color: black;
+	font-size: 54px;
+	border-color: white;
+	border: solid;
+	border-radius: 12%;
+	padding: 7px;
+	font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+	background-color: white;
+
 }

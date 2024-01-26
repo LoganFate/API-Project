@@ -38,7 +38,7 @@ function Navigation({ isLoaded }) {
         />
       </li>
     </>
-  );
+  )
 
   return (
     <div className='nav-links'>

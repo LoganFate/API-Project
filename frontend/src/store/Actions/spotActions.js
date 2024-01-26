@@ -71,23 +71,30 @@ export const setSpotDetails = (spotDetails) => ({
 
 
 export const createSpot = (spotData) => async (dispatch) => {
-  const response = await csrfFetch('/api/spots', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(spotData),
-  });
+  try {
+    const response = await csrfFetch('/api/spots', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(spotData),
+    });
 
-  if (!response.ok) {
-    const errorData = await response.json();
-    throw new Error(errorData.message || 'Error creating spot');
+    if (response.ok) {
+      const newSpot = await response.json();
+      dispatch(addSpot(newSpot));
+      return { spot: newSpot };
+    } else {
+      const errorData = await response.json();
+      return { error: errorData };
+    }
+  } catch (networkError) {
+    console.error('Network error:', networkError);
+    return { error: { message: "Network error, failed to create spot" } };
   }
-
-  const newSpot = await response.json();
-  dispatch(addSpot(newSpot));
-  return newSpot;
 };
+
+
 
 
 export const fetchSpotDetails = (spotId) => async (dispatch) => {
