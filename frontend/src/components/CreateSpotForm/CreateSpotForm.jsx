@@ -23,25 +23,6 @@ function CreateSpotForm() {
     const sessionUser = useSelector((state) => state.session.user);
     const ownerId = sessionUser ? sessionUser.id : null;
 
-    function validateLat(lat) {
-        if (lat === "" || lat === null) return null; // Return null for empty or null inputs
-        lat = parseFloat(lat);
-        if (isNaN(lat) || lat < -90 || lat > 90) {
-          return "Latitude must be between -90 and 90"; // Return error message for invalid values
-        }
-        return lat; // Return the parsed number for valid inputs
-      }
-
-      function validateLng(lng) {
-        if (lng === "" || lng === null) return null; // Return null for empty or null inputs
-        lng = parseFloat(lng);
-        if (isNaN(lng) || lng < -180 || lng > 180) {
-          return "Longitude must be between -180 and 180"; // Return error message for invalid values
-        }
-        return lng; // Return the parsed number for valid inputs
-      }
-
-
     const validate = () => {
         const newErrors = {};
         if (!country) newErrors.country = 'Country is required';
@@ -52,25 +33,31 @@ function CreateSpotForm() {
         if (!price) newErrors.price = 'Price per night is required';
         if (!previewImageUrl) newErrors.previewImageUrl = 'Preview Image URL is required';
         if (description.length < 30) newErrors.description = 'Description needs 30 or more characters';
-        const hasImage = previewImageUrl || imageUrls.some(url => url.trim() !== '');
-    if (!hasImage) {
-        newErrors.images = 'You must submit at least one image of your spot.';
+
+        // Validate latitude
+    if (lat !== "" && lat !== null) {
+        const parsedLat = parseFloat(lat);
+        if (isNaN(parsedLat) || parsedLat < -90 || parsedLat > 90) {
+            newErrors.lat = 'Latitude must be between -90 and 90';
+        }
     }
-    const latError = validateLat(lat);
-    const lngError = validateLng(lng);
-    if (latError) newErrors.lat = latError;
-    if (lngError) newErrors.lng = lngError;
+         // Validate longitude
+    if (lng !== "" && lng !== null) {
+        const parsedLng = parseFloat(lng);
+        if (isNaN(parsedLng) || parsedLng < -180 || parsedLng > 180) {
+            newErrors.lng = 'Longitude must be between -180 and 180';
+        }
+    }
 
-
-        setErrors(newErrors); // Set the errors state immediately
-        return Object.keys(newErrors).length === 0;
+        return newErrors;
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const isValid = validate(); // This will set the errors state as well
-        if (!isValid) {
-            return; // Stop the form submission if there are errors
+        const validationErrors = validate();
+        if (Object.keys(validationErrors).length) {
+            setErrors(validationErrors);
+            return;
         }
 
         try {
@@ -80,8 +67,8 @@ function CreateSpotForm() {
                 address,
                 city,
                 state,
-                lat: lat === "" ? null : validateLat(lat),
-                lng: lng === "" ? null  : validateLng(lng),
+                lat: lat ? parseFloat(lat) : null,
+                lng: lng ? parseFloat(lng) : null,
                 description,
                 name: title,
                 price: parseFloat(price),
@@ -91,19 +78,16 @@ function CreateSpotForm() {
 
             const response = await dispatch(createSpot(spotData));
 
-
-          // Check if the response status is successful
-          if (response.spot) {
-            navigate(`/spots/${response.spot.id}`);
-          } else if (response.error) {
-            console.error('Error details:', response.error);
-            setErrors({ form: "Failed to create spot", ...response.error.errors });
-          }
-        } catch (networkError) {
-          console.error('Network error:', networkError);
-          setErrors({ form: networkError.message || "Network error, failed to create spot" });
+            if (response.spot) {
+                navigate(`/spots/${response.spot.id}`);
+            } else {
+                setErrors({ form: "Failed to create spot" });
+            }
+        } catch (error) {
+            console.error('Error creating spot:', error);
+            setErrors({ form: error.message || "Error creating spot" });
         }
-      };
+    };
 
     const clearForm = () => {
         setCountry('');

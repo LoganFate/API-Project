@@ -9,10 +9,10 @@ router.get('/', async (req, res) => {
     // Parsing query parameters
     const page = parseInt(req.query.page, 10) || 1;
     const size = parseInt(req.query.size, 10) || 20;
-    const minLat = parseFloat(req.query.minLat);
-    const maxLat = parseFloat(req.query.maxLat);
-    const minLng = parseFloat(req.query.minLng);
-    const maxLng = parseFloat(req.query.maxLng);
+    const minLat = req.query.minLat === "" || req.query.minLat === undefined ? null : parseFloat(req.query.minLat);
+    const maxLat = req.query.maxLat === "" || req.query.maxLat === undefined ? null : parseFloat(req.query.maxLat);
+    const minLng = req.query.minLng === "" || req.query.minLng === undefined ? null : parseFloat(req.query.minLng);
+    const maxLng = req.query.maxLng === "" || req.query.maxLng === undefined ? null : parseFloat(req.query.maxLng);
     const minPrice = parseFloat(req.query.minPrice);
     const maxPrice = parseFloat(req.query.maxPrice);
 
@@ -20,10 +20,10 @@ router.get('/', async (req, res) => {
     const errors = {};
     if (isNaN(page) || page < 1) errors.page = "Page must be greater than or equal to 1";
     if (isNaN(size) || size < 1) errors.size = "Size must be greater than or equal to 1";
-    if (!isNaN(minLat) && (minLat < -90 || minLat > 90)) errors.minLat = "Minimum latitude is invalid";
-    if (!isNaN(maxLat) && (maxLat < -90 || maxLat > 90)) errors.maxLat = "Maximum latitude is invalid";
-    if (!isNaN(minLng) && (minLng < -180 || minLng > 180)) errors.minLng = "Minimum longitude is invalid";
-    if (!isNaN(maxLng) && (maxLng < -180 || maxLng > 180)) errors.maxLng = "Maximum longitude is invalid";
+    if (minLat !== null && (isNaN(minLat) || minLat < -90 || minLat > 90)) errors.minLat = "Minimum latitude is invalid";
+    if (maxLat !== null && (isNaN(maxLat) || maxLat < -90 || maxLat > 90)) errors.maxLat = "Maximum latitude is invalid";
+    if (minLng !== null && (isNaN(minLng) || minLng < -180 || minLng > 180)) errors.minLng = "Minimum longitude is invalid";
+    if (maxLng !== null && (isNaN(maxLng) || maxLng < -180 || maxLng > 180)) errors.maxLng = "Maximum longitude is invalid";
     if (!isNaN(minPrice) && minPrice < 0) errors.minPrice = "Minimum price must be greater than or equal to 0";
     if (!isNaN(maxPrice) && maxPrice < 0) errors.maxPrice = "Maximum price must be greater than or equal to 0";
 
@@ -38,10 +38,10 @@ router.get('/', async (req, res) => {
 
     // Constructing the where clause based on query parameters
     const whereClause = {};
-    if (!isNaN(minLat) && minLat >= -90 && minLat <= 90) whereClause.lat = { [Op.gte]: minLat };
-    if (!isNaN(maxLat) && maxLat >= -90 && maxLat <= 90) whereClause.lat = { ...whereClause.lat, [Op.lte]: maxLat };
-    if (!isNaN(minLng) && minLng >= -180 && minLng <= 180) whereClause.lng = { [Op.gte]: minLng };
-    if (!isNaN(maxLng) && maxLng >= -180 && maxLng <= 180) whereClause.lng = { ...whereClause.lng, [Op.lte]: maxLng };
+    if (minLat !== null) whereClause.lat = { [Op.gte]: minLat };
+    if (maxLat !== null) whereClause.lat = { ...whereClause.lat, [Op.lte]: maxLat };
+    if (minLng !== null) whereClause.lng = { [Op.gte]: minLng };
+    if (maxLng !== null) whereClause.lng = { ...whereClause.lng, [Op.lte]: maxLng };
     if (!isNaN(minPrice) && minPrice >= 0) whereClause.price = { [Op.gte]: minPrice };
     if (!isNaN(maxPrice) && maxPrice >= 0) whereClause.price = { ...whereClause.price, [Op.lte]: maxPrice };
 
@@ -229,12 +229,12 @@ router.post('/', requireAuth, async (req, res, next) => {
         if (!city) validationErrors.city = "City is required";
         if (!state) validationErrors.state = "State is required";
         if (!country) validationErrors.country = "Country is required";
-        if (lat < -90 || lat > 90) {
-        validationErrors.lat = "Latitude must be within -90 and 90";
-    }
-    if  (lng < -180 || lng > 180) {
-        validationErrors.lng = "Longitude must be within -180 and 180";
-    }
+        if (lat !== null && (isNaN(lat) || lat < -90 || lat > 90)) {
+            validationErrors.lat = "Latitude must be between -90 and 90";
+        }
+        if (lng !== null && (isNaN(lng) || lng < -180 || lng > 180)) {
+            validationErrors.lng = "Longitude must be between -180 and 180";
+        }
         if (!name || name.length > 50) validationErrors.name = "Name must be less than 50 characters";
         if (!description) validationErrors.description = "Description is required";
         if (!price || price <= 0) validationErrors.price = "Price per day must be a positive number";
@@ -253,8 +253,8 @@ router.post('/', requireAuth, async (req, res, next) => {
             city,
             state,
             country,
-            lat,
-            lng,
+            lat: lat || 0,
+            lng: lat || 0,
             name,
             description,
             price,
