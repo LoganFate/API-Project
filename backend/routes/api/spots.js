@@ -366,8 +366,8 @@ router.put('/:spotId', requireAuth, async (req, res, next) => {
         spot.city = city;
         spot.state = state;
         spot.country = country;
-        spot.lat = lat || null;
-        spot.lng = lng || null;
+        spot.lat = lat || 0;
+        spot.lng = lng || 0;
         spot.name = name;
         spot.description = description;
         spot.price = price;
@@ -467,7 +467,14 @@ router.post('/:spotId/reviews', requireAuth, async (req, res, next) => {
 
         // Create the review
         const newReview = await Review.create({ userId, spotId, review, stars });
-        return res.status(201).json(newReview);
+        const user = await User.findByPk(userId, {
+            attributes: ['id', 'firstName', 'lastName'],
+        });
+        const response = {
+            ...newReview.toJSON(),  // Convert Sequelize model instance to JSON
+            User: user,  // Include the user details
+        };
+        return res.status(201).json(response);
     } catch (error) {
         next(error);
     }

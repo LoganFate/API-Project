@@ -35,6 +35,7 @@ function ProfileButton({ user }) {
   const logout = (e) => {
     e.preventDefault();
     dispatch(sessionActions.logout());
+    navigate('/'); // Navigate to the homepage after logging out
     setShowMenu(false);
   };
 

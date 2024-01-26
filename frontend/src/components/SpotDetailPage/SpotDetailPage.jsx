@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import ReviewForm from '../ReviewForm/ReviewForm';
 import { useModal } from '../../context/Modal';
-import { addReview, fetchReviews, deleteReview } from '../../store/Actions/reviewActions';
+import { addReview, fetchReviews, deleteReview, setReviews } from '../../store/Actions/reviewActions';
 import { fetchSpotDetails } from '../../store/Actions/spotActions';
 import DeleteReviewModal from './DeleteReviewModal';
 import './SpotDetailPage.css';
@@ -37,10 +37,20 @@ const handleCancelDeleteReview = () => {
     setShowDeleteReviewModal(false);
 };
 
-  const handleReviewSubmission = async (reviewData) => {
+const handleReviewSubmission = async (reviewData) => {
     try {
-      await dispatch(addReview(spotId, reviewData, sessionUser.id));
+      const newReview = await dispatch(addReview(spotId, reviewData));
       setModalContent(null); // Close the modal on success
+
+      // Add user information to the new review
+      const reviewWithUser = {
+        ...newReview,
+        User: { id: sessionUser.id, firstName: sessionUser.firstName, lastName: sessionUser.lastName }
+      };
+
+      // Update the reviews in Redux state
+      const updatedReviews = [reviewWithUser, ...reviews];
+      dispatch(setReviews(updatedReviews));
     } catch (error) {
       console.error('Error submitting review:', error);
     }
