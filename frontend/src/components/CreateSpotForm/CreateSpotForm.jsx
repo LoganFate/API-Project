@@ -31,7 +31,7 @@ function CreateSpotForm() {
         if (!state) newErrors.state = 'State is required';
         if (!title) newErrors.title = 'Title is required';
         if (!price) newErrors.price = 'Price per night is required';
-        if (!previewImageUrl) newErrors.previewImageUrl = 'Preview Image URL is required';
+        if (!previewImageUrl) newErrors.previewImageUrl = 'At least one image URL is required';
         if (description.length < 30) newErrors.description = 'Description needs 30 or more characters';
 
         // Validate latitude
@@ -227,16 +227,16 @@ function CreateSpotForm() {
                 <p>Submit a link to at least one photo to publish your spot.</p>
                 {errors.images && <p className="error-message">{errors.images}</p>}
 
-<label htmlFor="previewImageUrl">Preview Image URL</label>
+                <label htmlFor="previewImageUrl">Preview Image URL</label>
+{errors.previewImageUrl && <p className="error-message">{errors.previewImageUrl}</p>} {/* Display error */}
 <input
     type="text"
     id="previewImageUrl"
     value={previewImageUrl}
     onChange={(e) => setPreviewImageUrl(e.target.value)}
     placeholder="Preview Image URL"
-    className={errors.images ? 'input-error' : ''}
+    className={errors.previewImageUrl ? 'input-error' : ''}
 />
-
 {imageUrls.map((url, index) => (
     <input
         key={index}

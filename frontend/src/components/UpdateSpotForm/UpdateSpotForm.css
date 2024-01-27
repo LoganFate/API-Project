@@ -61,10 +61,6 @@
     margin-top: 20px;
 }
 
-/* Hide error messages by default */
-.update-spot-form .error-message {
-    display: none;
-}
 
 /* Show error message if there is an error */
 .update-spot-form .error-message.active {
