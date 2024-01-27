@@ -4,9 +4,25 @@ import { useSelector, useDispatch } from 'react-redux';
 import ReviewForm from '../ReviewForm/ReviewForm';
 import { useModal } from '../../context/Modal';
 import { addReview, fetchReviews, deleteReview, setReviews } from '../../store/Actions/reviewActions';
-import { fetchSpotDetails } from '../../store/Actions/spotActions';
+import { fetchSpotDetails, updateSpotDetails } from '../../store/Actions/spotActions';
 import DeleteReviewModal from './DeleteReviewModal';
 import './SpotDetailPage.css';
+
+const ReadOnlyStarRating = ({ rating }) => {
+    return (
+        <div className="star-rating">
+            {[...Array(5)].map((star, index) => {
+                const ratingValue = index + 1;
+                return (
+                    <span key={index}
+                        className="star"
+                        style={{ color: ratingValue <= rating ? "#ffc107" : "#e4e5e9" }}
+                    >&#9733;</span>
+                );
+            })}
+        </div>
+    );
+};
 
 
 const SpotDetailPage = () => {
@@ -40,21 +56,24 @@ const handleCancelDeleteReview = () => {
 const handleReviewSubmission = async (reviewData) => {
     try {
       const newReview = await dispatch(addReview(spotId, reviewData));
-      setModalContent(null); // Close the modal on success
-
-      // Add user information to the new review
-      const reviewWithUser = {
-        ...newReview,
-        User: { id: sessionUser.id, firstName: sessionUser.firstName, lastName: sessionUser.lastName }
-      };
+      setModalContent(null);
 
       // Update the reviews in Redux state
-      const updatedReviews = [reviewWithUser, ...reviews];
+      const updatedReviews = [newReview, ...reviews];
       dispatch(setReviews(updatedReviews));
+
+      // Update the spot details (e.g., avg rating, total reviews)
+      const newAvgRating = calculateNewAverage(updatedReviews);
+      const newReviewCount = updatedReviews.length;
+      dispatch(updateSpotDetails({ ...spot, avgStarRating: newAvgRating, numReviews: newReviewCount }));
     } catch (error) {
       console.error('Error submitting review:', error);
     }
-  };
+};
+const calculateNewAverage = (reviews) => {
+    const total = reviews.reduce((acc, review) => acc + review.stars, 0);
+    return total / reviews.length;
+};
 
   if (!spot) {
     return <div>Loading...</div>;
@@ -128,7 +147,10 @@ return (
     ) : (
         reviews.map(review => (
             <div key={review.id} className="review">
-                <p>{review?.User?.firstName} - {new Date(review.createdAt).toLocaleString('default', { month: 'long', year: 'numeric' })}</p>
+                <div className='review-header'>
+                <p>{review?.User?.firstName} - {new Date(review.createdAt).toLocaleString('default', { month: 'long', year: 'numeric' })}
+                </p> <ReadOnlyStarRating rating={review.stars} />
+                </div>
                 <p>{review.review}</p>
                 {sessionUser?.id === review.userId && (
                             <button onClick={() => handleOpenDeleteReviewModal(review.id)}>Delete</button>

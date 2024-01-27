@@ -7,6 +7,15 @@ export const SET_USER_SPOTS = 'spots/SET_USER_SPOTS'
 export const DELETE_SPOT = 'spots/DELETE_SPOT';
 export const UPDATE_SPOT = 'spots/UPDATE_SPOT';
 
+
+export const updateSpotDetails = (spotId, updatedDetails) => async dispatch => {
+  // Optionally, you can also update the backend here if needed
+  dispatch({
+      type: UPDATE_SPOT,
+      payload: updatedDetails,
+  });
+};
+
 export const updateSpot = (spotId, spotData) => async dispatch => {
   try {
     const response = await csrfFetch(`/api/spots/${spotId}`, {

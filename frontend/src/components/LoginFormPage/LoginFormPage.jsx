@@ -26,30 +26,38 @@ function LoginFormPage() {
 
   return (
     <>
-      <h1>Log In</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Username or Email
-          <input
-            type="text"
-            value={credential}
-            onChange={(e) => setCredential(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Password
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        {errors.credential && <p>{errors.credential}</p>}
-        <button type="submit" disabled={credential.length < 4 || password.length < 6}>Log In</button>
-      </form>
-    </>
+    <div className="login-modal-container">
+      <div className="login-modal">
+        <h1>Log In</h1>
+        <form onSubmit={handleSubmit} className="login-form">
+          <div className="form-field">
+            <label>
+              Username or Email
+              <input
+                type="text"
+                value={credential}
+                onChange={(e) => setCredential(e.target.value)}
+                required
+              />
+            </label>
+          </div>
+          <div className="form-field">
+            <label>
+              Password
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </label>
+          </div>
+          {errors.credential && <p className="error-message">{errors.credential}</p>}
+          <button type="submit" className="login-button" disabled={credential.length < 4 || password.length < 6}>Log In</button>
+        </form>
+      </div>
+    </div>
+  </>
   );
 }
 

@@ -39,34 +39,39 @@ function LoginFormModal() {
 
 
   return (
-    <>
-      <h1>Log In</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Username or Email
-          <input
-            type="text"
-            value={credential}
-            onChange={(e) => setCredential(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Password
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        {error && <p className="error-message">{error}</p>}
-        <button type="submit" disabled={credential.length < 4 || password.length < 6}>Log In</button>
-        <button onClick={handleDemoLogin} type="button" className="demo-user-btn">Demo User</button>
-      </form>
-    </>
+    <div className="login-modal-container">
+      <div className="login-modal">
+        <h1>Log In</h1>
+        <form onSubmit={handleSubmit} className="login-form">
+          <div className="form-field">
+            <label>
+              Username or Email
+              <input
+                type="text"
+                value={credential}
+                onChange={(e) => setCredential(e.target.value)}
+                required
+              />
+            </label>
+          </div>
+          <div className="form-field">
+            <label>
+              Password
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </label>
+          </div>
+          {error && <p className="error-message">{error}</p>}
+          <button type="submit" className="login-button" disabled={credential.length < 4 || password.length < 6}>Log In</button>
+          <button onClick={handleDemoLogin} type="button" className="demo-user-btn">Demo User</button>
+        </form>
+      </div>
+    </div>
   );
 }
-
 
 export default LoginFormModal;

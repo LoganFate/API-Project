@@ -62,6 +62,7 @@ const UpdateSpotForm = () => {
 
         if (spot) {
             setFormData({
+                ...formData,
                 name: spot.name,
                 description: spot.description,
                 country: spot.country,
@@ -71,7 +72,7 @@ const UpdateSpotForm = () => {
                 lat: spot.lat.toString(), // Ensure lat and lng are strings
                 lng: spot.lng.toString(),
                 price: spot.price.toString(),
-                previewImageUrl: spot.previewImageUrl,
+                previewImage: spot.previewImage,
                 // Set other fields as needed
             });
         } else {

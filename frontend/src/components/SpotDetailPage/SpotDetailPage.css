@@ -48,6 +48,14 @@
     color: black;
   }
 
+  .review-header {
+    display: flex;
+    align-items: center; /* Align items vertically in the center */
+    justify-content: flex-start; /* Align items to the start of the flex container */
+    gap: 10px; /* Space between elements */
+    margin-bottom: 10px; /* Space below the header */
+}
+
   /* Reserve button styles */
   .reserve-button {
     background-color: #ff5a5f;

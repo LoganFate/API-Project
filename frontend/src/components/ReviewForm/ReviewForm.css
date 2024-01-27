@@ -1,0 +1,81 @@
+.review-modal-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.review-modal {
+    background-color: #fff;
+    padding: 2em;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.review-form h2 {
+    text-align: center;
+    color: #FF5A5F;
+    margin-bottom: 1em;
+}
+
+.review-form .form-field {
+    margin-bottom: 1em;
+}
+
+.review-textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    resize: vertical; /* Allow vertical resizing */
+}
+
+.review-select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-top: 0.5em;
+}
+
+.review-submit-button {
+    background-color: #FF5A5F;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 1em;
+    width: 100%; /* Full width button */
+}
+
+.review-submit-button:disabled {
+    background-color: #ccc;
+}
+
+.error-message {
+    color: red;
+    margin-top: 0.5em;
+}
+
+.star-rating {
+    display: flex;
+    justify-content: center;
+    margin: 1em 0;
+  }
+
+  .star-rating label {
+    cursor: pointer;
+    font-size: 2em;
+    color: #e4e5e9; /* Default star color */
+  }
+
+  .star-rating label input[type="radio"] {
+    display: none; /* Hide the radio button */
+  }
+
+  .star-rating label .star {
+    transition: color 200ms;
+  }

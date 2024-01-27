@@ -1,64 +1,70 @@
-.form-container {
-    background-color: #fff; /* White background */
-    padding: 2em; /* Spacing inside the container */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for depth */
-    max-width: 400px; /* Max width of the form */
-    margin: auto; /* Center the form in the page */
-  }
+.login-modal-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Full viewport height */
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background for overlay */
+}
 
-  h1 {
-    text-align: center; /* Center the title */
-    color: #333; /* Dark grey color for the text */
-    margin-bottom: 1em; /* Space below the title */
-  }
+.login-modal {
+  background-color: #fff;
+  padding: 2em;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
 
-  form {
-    display: flex;
-    flex-direction: column;
-  }
+h1 {
+  text-align: center;
+  color: #FF5A5F;
+  margin-bottom: 1em;
+}
 
-  label {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 1em; /* Space between the label and the next input */
-  }
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
 
-  input[type="text"],
-  input[type="password"] {
-    padding: 0.5em; /* Padding inside the input fields */
-    border: 1px solid #ccc; /* Light grey border */
-    border-radius: 4px; /* Slightly rounded corners for the input fields */
-    margin-top: 0.5em; /* Space between the label and the input field */
-  }
+.form-field {
+  margin-bottom: 1em;
+}
 
-  input[type="submit"] {
-    background-color: #ff5a5f; /* Example button color */
-    color: white; /* Text color for the button */
-    padding: 0.5em 1em;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer; /* Change mouse pointer on hover */
-    margin-top: 0.5em; /* Space between the input fields and the button */
-  }
+input[type="text"],
+input[type="password"] {
+  width: 100%; /* Ensures input fields use the full width */
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-top: 0.5em;
+}
 
-  input[type="submit"]:disabled {
-    background-color: #ccc; /* Grey out the button when disabled */
-  }
+.login-button {
+  background-color: #FF5A5F;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 1em;
+}
 
-  /* Styling the error message */
-  .error-message {
-    color: red; /* Red color for errors */
-    margin-top: 0.5em; /* Space between the input and the error message */
-  }
+.login-button:disabled {
+  background-color: #ccc;
+}
 
-  /* Add additional styles if you have a 'Demo User' button */
-  .demo-user-btn {
-    background-color: #555; /* Darker background for the demo button */
-    color: white;
-    padding: 0.5em 1em;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-top: 1em; /* Space above the demo user button */
-  }
+.error-message {
+  color: red;
+  margin-top: 0.5em;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+  border-color: #FF5A5F;
+}
+
+input[type="text"]:hover,
+input[type="password"]:hover {
+  border-color: #FF5A5F;
+}
