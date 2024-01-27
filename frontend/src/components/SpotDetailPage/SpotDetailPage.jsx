@@ -82,7 +82,7 @@ const calculateNewAverage = (reviews) => {
 const mainImageUrl = spot.SpotImages && spot.SpotImages.length > 0
     ? spot.SpotImages[0].url
     : spot.mainImageUrl;
-const otherImages = spot.SpotImages.slice(1).map(image => image.url);
+    const otherImages = spot.SpotImages ? spot.SpotImages.slice(1).map(image => image.url) : [];
 
 const displayRating = spot.avgStarRating ? `${spot.avgStarRating.toFixed(1)}` : "New";
 const reviewCount = spot.numReviews || 0;
