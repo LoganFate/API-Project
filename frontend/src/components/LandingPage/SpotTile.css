@@ -12,13 +12,14 @@
   .spot-tile {
     display: flex;
     flex-direction: column; /* Stack image and details vertically */
-    align-items: center; /* Align children (image and text) in the center */
+    /* align-items: center; Align children (image and text) in the center */
     border: 1px solid #ddd;
     border-radius: 12px;
     overflow: hidden;
     background-color: whitesmoke;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     text-decoration: none;
+    font-style: bold;
   }
 
   /* Responsive image styles */
@@ -31,6 +32,8 @@
 
   .spot-info {
     color: black;
+    padding-left: 20px;
+
   }
 
   .fas.fa-star {
@@ -51,6 +54,19 @@
     font-family: Arial, Helvetica, sans-serif;
   }
 
+  #spot-location {
+    font-style: bold;
+    font-size: 20px;
+  }
+
+  .spot-rating {
+    font-size: 18px;
+    font-style: bold;
+  }
+.spot-price {
+  font-style: italic;
+  font-size: 16px;
+}
 
 
   /* Responsive layout adjustments */

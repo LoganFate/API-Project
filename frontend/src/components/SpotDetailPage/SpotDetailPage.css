@@ -16,10 +16,12 @@
   .main-image {
     width: 100%; /* Make the main image full width */
     object-fit: cover; /* Cover the space without stretching */
-    border-radius: 5px;
+    border-radius: 8px;
     margin-bottom: 15px;
     max-height: 500px;
     max-width: 500px;
+    border-color: whitesmoke;
+    border: solid;
 
   }
 
