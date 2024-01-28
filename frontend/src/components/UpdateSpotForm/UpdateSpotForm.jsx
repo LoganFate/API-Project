@@ -62,7 +62,6 @@ const UpdateSpotForm = () => {
 
         if (spot) {
             setFormData({
-                ...formData,
                 name: spot.name,
                 description: spot.description,
                 country: spot.country,

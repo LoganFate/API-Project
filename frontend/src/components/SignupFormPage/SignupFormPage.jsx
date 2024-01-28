@@ -39,6 +39,12 @@ function SignupFormPage() {
       confirmPassword: "Confirm Password field must be the same as the Password field"
     });
   };
+  const renderError = (fieldName) => {
+    if (errors[fieldName]) {
+      return <p className="error-message">{errors[fieldName]}</p>;
+    }
+    return null;
+  };
 
   return (
     <div className="signup-modal-container">
@@ -55,7 +61,7 @@ function SignupFormPage() {
                 required
               />
             </label>
-            {errors.email && <p className="error-message">{errors.email}</p>}
+            {renderError('email')}
           </div>
 
           <div className="form-field">
@@ -68,7 +74,7 @@ function SignupFormPage() {
                 required
               />
             </label>
-            {errors.username && <p className="error-message">{errors.username}</p>}
+            {renderError('username')}
           </div>
 
           <div className="form-field">
@@ -81,7 +87,7 @@ function SignupFormPage() {
                 required
               />
             </label>
-            {errors.firstName && <p className="error-message">{errors.firstName}</p>}
+            {renderError('firstName')}
           </div>
 
           <div className="form-field">
@@ -94,7 +100,7 @@ function SignupFormPage() {
                 required
               />
             </label>
-            {errors.lastName && <p className="error-message">{errors.lastName}</p>}
+            {renderError('lastName')}
           </div>
 
           <div className="form-field">
@@ -107,7 +113,7 @@ function SignupFormPage() {
                 required
               />
             </label>
-            {errors.password && <p className="error-message">{errors.password}</p>}
+            {renderError('password')}
           </div>
 
           <div className="form-field">
@@ -120,7 +126,7 @@ function SignupFormPage() {
                 required
               />
             </label>
-            {errors.confirmPassword && <p className="error-message">{errors.confirmPassword}</p>}
+            {renderError('confirmPassword')}
           </div>
 
           <button type="submit" className="signup-button">Sign Up</button>
@@ -129,4 +135,5 @@ function SignupFormPage() {
     </div>
   );
 }
+
 export default SignupFormPage;
