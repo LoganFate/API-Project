@@ -11,45 +11,71 @@ module.exports = {
   async up (queryInterface, Sequelize) {
     await Review.bulkCreate([
       {
-        spotId: 1, // Replace with actual spot IDs
-        userId: 1, // Replace with actual user IDs
-        review: 'Great place!',
+        userId: 3, // Random user ID
+        spotId: 1,
+        review: "The supernova experience was out of this world! The view was incredible, and the colors were unlike anything I've ever seen.",
         stars: 5,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        spotId: 2, // Replace with actual spot IDs
-        userId: 2, // Replace with actual user IDs
-        review: 'Not so great place!',
-        stars: 2,
+        userId: 5,
+        spotId: 1,
+        review: "An unforgettable cosmic journey. Witnessing a star's life cycle in such detail was truly awe-inspiring.",
+        stars: 4,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // Reviews for Spots 2-7 (1 review each)
+      {
+        userId: 2,
+        spotId: 2,
+        review: "The event horizon of Sagittarius A* was mesmerizing. It felt like staring into the very fabric of space and time.",
+        stars: 5,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // ... Similar pattern for spots 3 through 7
+      {
+        userId: 4,
+        spotId: 3,
+        review: "Orion Nebula's vibrant colors took my breath away. A must-visit for anyone fascinated by the mysteries of space.",
+        stars: 5,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        spotId: 3, // Replace with actual spot IDs
-        userId: 3, // Replace with actual user IDs
-        review: 'It was alright.',
-        stars: 3,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        spotId: 4, // Replace with actual spot IDs
-        userId: 4, // Replace with actual user IDs
-        review: 'Amazing, but a lot of noise when trying to sleep at night.',
+        userId: 1,
+        spotId: 4,
+        review: "Andromeda Galaxy was stunning. It's amazing to see another galaxy up close and personal!",
         stars: 4,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        spotId: 5, // Replace with actual spot IDs
-        userId: 5, // Replace with actual user IDs
-        review: 'The worst place in the entire universe.',
-        stars: 1,
+        userId: 6,
+        spotId: 5,
+        review: "Seeing the rhythmic pulsing of the Vela Pulsar is a unique experience. It's like a cosmic lighthouse!",
+        stars: 4,
         createdAt: new Date(),
         updatedAt: new Date()
       },
+      {
+        userId: 9,
+        spotId: 7,
+        review: "Exploring the aftermath of a supernova in the Crab Nebula was surreal. The colors and patterns are extraordinary.",
+        stars: 5,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        userId: 8,
+        spotId: 8,
+        review: "Sailing through the Horsehead Nebula's dark clouds was a dream come true. The silhouette against the gas clouds is striking.",
+        stars: 4,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }
     ], { validate: true });
   },
 

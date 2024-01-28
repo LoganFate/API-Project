@@ -19,28 +19,56 @@ module.exports = {
       },
       {
         spotId: 2, // Replace with actual spot IDs
-        url: 'http://example.com/spot-image-2.jpg',
+        url: '/SagittariusA.png',
         preview: true, // or false depending on your need
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         spotId: 3, // Replace with actual spot IDs
-        url: 'http://example.com/spot-image-3.jpg',
+        url: '/Orion.png',
         preview: true, // or false depending on your need
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         spotId: 4, // Replace with actual spot IDs
-        url: 'http://example.com/spot-image-4.jpg',
+        url: '/Andromeda.png',
         preview: true, // or false depending on your need
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         spotId: 5, // Replace with actual spot IDs
-        url: 'http://example.com/spot-image-5.jpg',
+        url: '/Pulsar.png',
+        preview: true, // or false depending on your need
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        spotId: 6, // Replace with actual spot IDs
+        url: '/Quasar.png',
+        preview: true, // or false depending on your need
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        spotId: 7, // Replace with actual spot IDs
+        url: '/Nebula.png',
+        preview: true, // or false depending on your need
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        spotId: 8, // Replace with actual spot IDs
+        url: '/HorseHead.png',
+        preview: true, // or false depending on your need
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        spotId: 9, // Replace with actual spot IDs
+        url: '/Antennae.png',
         preview: true, // or false depending on your need
         createdAt: new Date(),
         updatedAt: new Date()

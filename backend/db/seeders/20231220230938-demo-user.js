@@ -15,37 +15,66 @@ module.exports = {
         email: 'demo@user.io',
         username: 'Demo-lition',
         hashedPassword: bcrypt.hashSync('password'),
-        firstName: 'random',
-        lastName: 'person'
+        firstName: 'User',
+        lastName: 'Demo'
       },
       {
-        email: 'user1@user.io',
-        username: 'FakeUser1',
+        email: 'RickyRick@RandM.com',
+        username: 'Wubulubbadubdub',
         hashedPassword: bcrypt.hashSync('password2'),
-        firstName: 'other',
-        lastName: 'user'
+        firstName: 'Rick',
+        lastName: 'Sanchez'
       },
       {
-        email: 'user2@user.io',
-        username: 'FakeUser2',
+        email: 'Morty@adventures.com',
+        username: 'AwJeez',
         hashedPassword: bcrypt.hashSync('password3'),
-        firstName: 'last',
-        lastName: 'one'
+        firstName: 'Morty',
+        lastName: 'Smith'
       },
       {
-        email: 'user3@user.io',
-        username: 'FakeUser3',
+        email: 'Meseeks@box.com',
+        username: 'MrMeseeks',
         hashedPassword: bcrypt.hashSync('password4'),
-        firstName: 'user',
-        lastName: 'three'
+        firstName: 'Mr.Meseeks',
+        lastName: 'Meseeks'
       },
       {
-        email: 'user4@user.io',
-        username: 'FakeUser4',
+        email: 'Squanchy@party.com',
+        username: 'SquanchySquanch',
         hashedPassword: bcrypt.hashSync('password5'),
-        firstName: 'bot',
-        lastName: 'jenkins'
-      }
+        firstName: 'Squanchy',
+        lastName: 'Squanch'
+      },
+      {
+        email: 'Birdperson@phoenixperson.com',
+        username: 'BirdPerson',
+        hashedPassword: bcrypt.hashSync('password6'),
+        firstName: 'Bird',
+        lastName: 'Person'
+      },
+      {
+        email: 'EvilMorty@citadel.com',
+        username: 'EvilMorty',
+        hashedPassword: bcrypt.hashSync('password7'),
+        firstName: 'Evil',
+        lastName: 'Morty'
+      },
+      {
+        email: 'Jerry@unemployed.com',
+        username: 'JerryJamboree',
+        hashedPassword: bcrypt.hashSync('password8'),
+        firstName: 'Jerry',
+        lastName: 'Smith'
+      },
+      {
+        email: 'Beth@horsehospital.com',
+        username: 'SpaceBeth',
+        hashedPassword: bcrypt.hashSync('password5'),
+        firstName: 'Beth',
+        lastName: 'Smith'
+      },
+
     ], { validate: true });
   },
 
