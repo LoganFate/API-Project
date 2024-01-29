@@ -19,7 +19,7 @@ module.exports = {
         country: 'Local Group',
         lat: 54.777,
         lng: -57.492,
-        name: 'SN 2023ixf',
+        name: 'Supernova Surreal Experience',
         description: 'Experience the awe-inspiring sight of a supernova in real-time, a rare and illuminating cosmic event offering spectacular views of stellar life cycles.',
         price: 114979,
         createdAt: new Date(),

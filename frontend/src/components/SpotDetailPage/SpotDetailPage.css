@@ -12,25 +12,28 @@
     font-size: 18px;
   }
 
+  .spot-images {
+    display: flex;
+    gap: 15px; /* Space between main image and small images container */
+  }
+
   /* Style for the main image */
   .main-image {
-    width: 100%; /* Make the main image full width */
-    object-fit: cover; /* Cover the space without stretching */
+    width: 50%; /* Adjust as needed */
+    object-fit: cover;
     border-radius: 8px;
-    margin-bottom: 15px;
     max-height: 500px;
-    max-width: 500px;
     border-color: whitesmoke;
     border: solid;
-
   }
 
   /* Style for the smaller images container */
-  .small-images {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Four images in a row */
-    grid-gap: 10px;
-  }
+.small-images {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two columns */
+  grid-gap: 10px;
+  width: 50%; /* Adjust as needed */
+}
 
   /* Style for each smaller image */
   .small-images img {
@@ -38,6 +41,8 @@
     aspect-ratio: 1; /* Keep the images square */
     object-fit: cover; /* Cover the space without stretching */
     border-radius: 5px;
+    border: solid;
+    border-color: whitesmoke;
   }
 
   /* Style for spot information and reviews on the side */
@@ -78,8 +83,21 @@
 
   /* Media query for responsive adjustments */
   @media (max-width: 768px) {
+    .spot-detail {
+      flex-direction: column;
+    }
+
+    .image-container {
+      flex-direction: column;
+    }
+
+    .main-image {
+      width: 100%;
+    }
+
     .small-images {
-      grid-template-columns: repeat(2, 1fr); /* Two images in a row on smaller screens */
+      grid-template-columns: repeat(2, 1fr); /* Adjust for smaller screens */
+      width: 100%;
     }
   }
 
