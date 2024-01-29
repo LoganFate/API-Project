@@ -41,7 +41,7 @@ function LoginFormModal() {
   return (
     <div className="login-modal-container">
       <div className="login-modal">
-        <h1>Log In</h1>
+        <h1 id='LogInTitle'>Log In</h1>
         <form onSubmit={handleSubmit} className="login-form">
           <div className="form-field">
             <label>

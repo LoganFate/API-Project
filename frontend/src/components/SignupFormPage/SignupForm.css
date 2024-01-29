@@ -15,7 +15,7 @@
     margin: 0 auto;
   }
 
-  h1 {
+  #SignUpTitle {
     text-align: center;
     color: #FF5A5F;
     margin-bottom: 1em;
