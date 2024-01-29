@@ -51,8 +51,8 @@ const ManageSpotsPage = () => {
 
     return (
         <div className='manage-spots-container'>
-            <h1>Manage Spots</h1>
-            <div className='spot-tiles'>
+            <h1 id='title'>Manage Spots</h1>
+            <div className='spot-tiles' id='manage-tiles'>
                 {userSpots.map(spot => (
                   <SpotTile key={spot.id} spot={spot} onUpdate={() => handleUpdateSpot(spot.id)} onDelete={() => handleDeleteSpot(spot.id, spot.name)} />
 

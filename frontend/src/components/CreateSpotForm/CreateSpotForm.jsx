@@ -48,6 +48,12 @@ function CreateSpotForm() {
             newErrors.lng = 'Longitude must be between -180 and 180';
         }
     }
+    const parsedPrice = parseFloat(price);
+    if (isNaN(parsedPrice) || parsedPrice <= 0) {
+        newErrors.price = "Price per day must be a positive number";
+    }
+
+
 
         return newErrors;
     };

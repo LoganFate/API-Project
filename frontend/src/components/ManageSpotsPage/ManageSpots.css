@@ -66,3 +66,23 @@
     max-height: 400px; /* Same as in spot detail page */
     max-width: 400px; /* Same as in spot detail page */
 }
+
+#manage-tiles {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two columns */
+  grid-gap: 110px;
+  width: 50%;
+  padding-left: 120px;
+}
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  #manage-tiles {
+      grid-template-columns: repeat(2, 1fr); /* 2 tiles in a row for medium screens */
+  }
+}
+
+@media (max-width: 768px) {
+  #manage-tiles {
+      grid-template-columns: 1fr; /* 1 tile in a row for small screens */
+  }
+}

@@ -50,6 +50,11 @@ const UpdateSpotForm = () => {
                 newErrors.lng = 'Longitude must be between -180 and 180';
             }
         }
+        const parsedPrice = parseFloat(formData.price);
+        if (isNaN(parsedPrice) || parsedPrice <= 0) {
+            newErrors.price = "Price per day must be a positive number";
+        }
+
 
         return newErrors;
     };
@@ -124,6 +129,7 @@ const UpdateSpotForm = () => {
             {/* Location Section */}
             <section>
                 <h2>Location Details</h2>
+                <label htmlFor="country">Country</label>
                 <input
                     type="text"
                     name="country"
@@ -133,7 +139,7 @@ const UpdateSpotForm = () => {
                     className={errors.country ? 'input-error' : ''}
                 />
                 {errors.country && <p className="error-message">{errors.country}</p>}
-
+                <label htmlFor="address">Street Address</label>
                 <input
                     type="text"
                     name="address"
@@ -143,7 +149,7 @@ const UpdateSpotForm = () => {
                     className={errors.address ? 'input-error' : ''}
                 />
                 {errors.address && <p className="error-message">{errors.address}</p>}
-
+                <label htmlFor="city">City</label>
                 <input
                     type="text"
                     name="city"
@@ -153,7 +159,7 @@ const UpdateSpotForm = () => {
                     className={errors.city ? 'input-error' : ''}
                 />
                 {errors.city && <p className="error-message">{errors.city}</p>}
-
+                <label htmlFor="state">State</label>
                 <input
                     type="text"
                     name="state"
@@ -189,6 +195,7 @@ const UpdateSpotForm = () => {
             {/* Description Section */}
             <section>
                 <h2>Description</h2>
+                <p>30 characters or more...</p>
                 <textarea
                     name="description"
                     value={formData.description}
@@ -201,7 +208,7 @@ const UpdateSpotForm = () => {
 
             {/* Title and Pricing Section */}
             <section>
-                <h2>Title and Pricing</h2>
+                <h2>Title</h2>
                 <input
                     type="text"
                     name="name"
@@ -211,7 +218,7 @@ const UpdateSpotForm = () => {
                     className={errors.name ? 'input-error' : ''}
                 />
                 {errors.name && <p className="error-message">{errors.name}</p>}
-
+                <h2>Pricing</h2>
                 <input
                     type="number"
                     name="price"
