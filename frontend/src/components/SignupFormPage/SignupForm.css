@@ -48,6 +48,15 @@
     cursor: pointer;
     margin-top: 1em;
   }
+  .signup-button:disabled {
+    background-color: #ccc; /* Grey color */
+    cursor: not-allowed; /* Change cursor to indicate disabled state */
+    color: #666; /* Optional: Change text color for disabled state */
+  }
+
+  .signup-button:disabled:hover {
+    border-color: #ccc; /* Remove highlight effect on hover */
+  }
 
   .error-message {
     color: red;

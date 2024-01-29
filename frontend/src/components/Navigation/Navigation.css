@@ -46,11 +46,6 @@ li {
 
 
 
-.button-container {
-	display: flex;
-	justify-content: space-between; /* Adjust as needed */
-  }
-
   .button-container button {
 	flex: 1; /* Makes buttons share available space */
   }
@@ -67,7 +62,6 @@ li {
 	background-color: white;
 	box-shadow: #484848 2px 2px 4px;
 	display: flex;
-	flex-direction: row;
 }
 
 .hidden {

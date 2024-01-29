@@ -14,6 +14,18 @@ function SignupFormPage() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState({});
 
+  const canSignUp = () => {
+    return (
+      email.length > 0 &&
+      username.length >= 4 &&
+      firstName.length > 0 &&
+      lastName.length > 0 &&
+      password.length >= 6 &&
+      confirmPassword.length > 0
+    );
+  };
+
+
   if (sessionUser) return <Navigate to="/" replace={true} />;
 
   const handleSubmit = (e) => {
@@ -30,7 +42,7 @@ function SignupFormPage() {
         })
       ).catch(async (res) => {
         const data = await res.json();
-        if (data?.errors) {
+        if (data && data.errors) {
           setErrors(data.errors);
         }
       });
@@ -51,6 +63,12 @@ function SignupFormPage() {
       <div className="signup-modal">
         <h1>Sign Up</h1>
         <form onSubmit={handleSubmit} className="signup-form">
+        {renderError('email')}
+  {renderError('username')}
+  {renderError('firstName')}
+  {renderError('lastName')}
+  {renderError('password')}
+  {renderError('confirmPassword')}
           <div className="form-field">
             <label>
               Email
@@ -129,7 +147,7 @@ function SignupFormPage() {
             {renderError('confirmPassword')}
           </div>
 
-          <button type="submit" className="signup-button">Sign Up</button>
+          <button type="submit" className="signup-button" disabled={!canSignUp()}>Sign Up</button>
         </form>
       </div>
     </div>

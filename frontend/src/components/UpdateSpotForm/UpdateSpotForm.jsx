@@ -20,9 +20,9 @@ const UpdateSpotForm = () => {
         name: '',
         price: '',
         previewImageUrl: '',
-        imageUrls: Array(4).fill(''),
-        lat: '',
-        lng: ''
+        imageUrls: spot ? spot.imageUrls : Array(4).fill(''),
+        lat: spot ? spot.lat.toString() : '',
+        lng: spot ? spot.lng.toString() : '',
     });
 
     const validate = () => {
@@ -33,10 +33,6 @@ const UpdateSpotForm = () => {
         if (!formData.state) newErrors.state = 'State is required';
         if (!formData.name) newErrors.name = 'Title is required';
         if (!formData.price) newErrors.price = 'Price per night is required';
-        if (!spot.previewImageUrl && !formData.previewImageUrl) {
-            newErrors.previewImageUrl = 'Preview Image URL is required';
-        }
-
 
         if (formData.description.length < 30) newErrors.description = 'Description needs 30 or more characters';
 
@@ -72,6 +68,7 @@ const UpdateSpotForm = () => {
                 lng: spot.lng.toString(),
                 price: spot.price.toString(),
                 previewImage: spot.previewImage,
+                imageUrls: spot.imageUrls || Array(4).fill(''),
                 // Set other fields as needed
             });
         } else {
@@ -91,7 +88,8 @@ const UpdateSpotForm = () => {
 
         const updatedFormData = {
             ...formData,
-            previewImageUrl: formData.previewImageUrl || spot.previewImageUrl,
+            previewImageUrl: formData.previewImageUrl || spot.previewImageUrl || '',
+            imageUrls: formData.imageUrls.filter(url => url !== ''),
         };
 
         try {
@@ -110,9 +108,15 @@ const UpdateSpotForm = () => {
         }
     };
     const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+        if (e.target.name.startsWith("imageUrl")) {
+            const index = parseInt(e.target.name.replace("imageUrl", ""));
+            const newImageUrls = [...formData.imageUrls];
+            newImageUrls[index] = e.target.value;
+            setFormData({ ...formData, imageUrls: newImageUrls });
+        } else {
+            setFormData({ ...formData, [e.target.name]: e.target.value });
+        }
     };
-
     return (
         <form onSubmit={handleSubmit} className='update-spot-form'>
             <h1>Update Your Spot</h1>
@@ -159,7 +163,8 @@ const UpdateSpotForm = () => {
                     className={errors.state ? 'input-error' : ''}
                 />
                 {errors.state && <p className="error-message">{errors.state}</p>}
-
+                <h2>Location Coordinates</h2>
+    <label htmlFor="lat">Latitude</label>
                 <input
                     type="number"
                     name="lat"
@@ -169,7 +174,7 @@ const UpdateSpotForm = () => {
                     className={errors.lat ? 'input-error' : ''}
                 />
                 {errors.lat && <p className="error-message">{errors.lat}</p>}
-
+                <label htmlFor="lng">Longitude</label>
                 <input
                     type="number"
                     name="lng"
@@ -220,7 +225,7 @@ const UpdateSpotForm = () => {
 
             {/* Image URL Section */}
             <section>
-                <h2>Images</h2>
+                <h2>Images (Optional)</h2>
                 <input
                     type="text"
                     name="previewImageUrl"
@@ -230,9 +235,18 @@ const UpdateSpotForm = () => {
                     className={errors.previewImageUrl ? 'input-error' : ''}
                 />
                 {errors.previewImageUrl && <p className="error-message">{errors.previewImageUrl}</p>}
-                {/* Include other image URL inputs here */}
-            </section>
-
+                {formData.imageUrls && formData.imageUrls.map((url, index) => (
+    <input
+        key={index}
+        type="text"
+        name={`imageUrl${index}`}
+        value={url}
+        onChange={handleChange}
+        placeholder={`Image URL ${index + 1}`}
+        className={errors.images ? 'input-error' : ''}
+    />
+))}
+</section>
             <button type="submit">Update Your Spot</button>
         </form>
     );

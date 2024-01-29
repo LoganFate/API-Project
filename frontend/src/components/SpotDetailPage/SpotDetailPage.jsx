@@ -130,7 +130,7 @@ return (
               ))}
           </div>
       </div>
-      <p>Hosted by {spot.Owner?.firstName}</p>
+      <p>Hosted by {spot.Owner?.firstName} {spot.Owner?.lastName}</p>
       <p>{spot.description}</p>
       <div className="callout-info">
           <p>Price: ${spot.price} / night</p>
@@ -139,6 +139,7 @@ return (
       </div>
           <div className="reviews-section">
     <h2>Reviews</h2>
+    <p>Rating: <i className="fas fa-star"></i> {displayRating}{reviewText}</p>
     {showPostReviewButton && (
         <button onClick={handlePostReviewClick}>Post Your Review</button>
     )}

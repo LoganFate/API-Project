@@ -357,7 +357,7 @@ router.put('/:spotId', requireAuth, async (req, res, next) => {
             name: name || spot.name,
             description: description || spot.description,
             price: price || spot.price,
-            previewImageUrl: previewImageUrl || spot.previewImageUrl // Conditional update
+            previewImageUrl:  previewImageUrl !== undefined ? previewImageUrl : spot.previewImageUrl,
         });
 
 
