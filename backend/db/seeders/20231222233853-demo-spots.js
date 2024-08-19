@@ -14,8 +14,8 @@ module.exports = {
       {
         ownerId: 1,  // Replace with actual user IDs
         address: 'NGC 5461',
-        city: 'Pinwheel Galaxy',
-        state: 'Whirlpool Region',
+        city: 'Every Fri & Sat',
+        state: '9:30pm - 2am',
         country: 'Local Group',
         lat: 54.777,
         lng: -57.492,

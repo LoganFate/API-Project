@@ -22,9 +22,9 @@ function Layout() {
     <>
       <header id='LogoTitle'>
         <NavLink to="/">
-          <img src="/CosCabLogo.jpg" alt="Logo" className="logo" />
+          <img src="/CTLOGO.jpg" alt="Logo" className="logo" />
         </NavLink>
-        <p id='CosTitle'>CosmicCabins</p>
+        <p id='CosTitle'>Upcoming Events</p>
         <Navigation isLoaded={isLoaded} />
       </header>
       {isLoaded && <Outlet />}
