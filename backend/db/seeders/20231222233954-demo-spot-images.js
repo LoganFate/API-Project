@@ -12,7 +12,7 @@ module.exports = {
     await SpotImage.bulkCreate([
       {
         spotId: 1, // Replace with actual spot IDs
-        url: '/Karaoke1.png',
+        url: '/HeightsPic.png',
         preview: true, // or false depending on your need
         createdAt: new Date(),
         updatedAt: new Date()
@@ -44,112 +44,112 @@ module.exports = {
         preview: false, // or false depending on your need
         createdAt: new Date(),
         updatedAt: new Date()
-      }
-      // {
-      //   spotId: 2, // Replace with actual spot IDs
-      //   url: '/SagittariusA.png',
-      //   preview: true, // or false depending on your need
-      //   createdAt: new Date(),
-      //   updatedAt: new Date()
-      // },
-      // {
-      //   spotId: 2, // Replace with actual spot IDs
-      //   url: '/SagittariusA2.png',
-      //   preview: false, // or false depending on your need
-      //   createdAt: new Date(),
-      //   updatedAt: new Date()
-      // },
-      // {
-      //   spotId: 2, // Replace with actual spot IDs
-      //   url: '/SagittariusA3.png',
-      //   preview: false, // or false depending on your need
-      //   createdAt: new Date(),
-      //   updatedAt: new Date()
-      // },
-      // {
-      //   spotId: 2, // Replace with actual spot IDs
-      //   url: '/SagittariusA4.png',
-      //   preview: false, // or false depending on your need
-      //   createdAt: new Date(),
-      //   updatedAt: new Date()
-      // },
-      // {
-      //   spotId: 2, // Replace with actual spot IDs
-      //   url: '/SagittariusA5.png',
-      //   preview: false, // or false depending on your need
-      //   createdAt: new Date(),
-      //   updatedAt: new Date()
-      // },
-      // {
-      //   spotId: 3, // Replace with actual spot IDs
-      //   url: '/Orion.png',
-      //   preview: true, // or false depending on your need
-      //   createdAt: new Date(),
-      //   updatedAt: new Date()
-      // },
-      // {
-      //   spotId: 3, // Replace with actual spot IDs
-      //   url: '/Orion2.png',
-      //   preview: false, // or false depending on your need
-      //   createdAt: new Date(),
-      //   updatedAt: new Date()
-      // },
-      // {
-      //   spotId: 3, // Replace with actual spot IDs
-      //   url: '/Orion3.png',
-      //   preview: false, // or false depending on your need
-      //   createdAt: new Date(),
-      //   updatedAt: new Date()
-      // },
-      // {
-      //   spotId: 3, // Replace with actual spot IDs
-      //   url: '/Orion4.png',
-      //   preview: false, // or false depending on your need
-      //   createdAt: new Date(),
-      //   updatedAt: new Date()
-      // },
-      // {
-      //   spotId: 3, // Replace with actual spot IDs
-      //   url: '/Orion5.png',
-      //   preview: false, // or false depending on your need
-      //   createdAt: new Date(),
-      //   updatedAt: new Date()
-      // },
-      // {
-      //   spotId: 4, // Replace with actual spot IDs
-      //   url: '/Andromeda.png',
-      //   preview: true, // or false depending on your need
-      //   createdAt: new Date(),
-      //   updatedAt: new Date()
-      // },
-      // {
-      //   spotId: 4, // Replace with actual spot IDs
-      //   url: '/Andromeda2.png',
-      //   preview: false, // or false depending on your need
-      //   createdAt: new Date(),
-      //   updatedAt: new Date()
-      // },
-      // {
-      //   spotId: 4, // Replace with actual spot IDs
-      //   url: '/Andromeda3.png',
-      //   preview: false, // or false depending on your need
-      //   createdAt: new Date(),
-      //   updatedAt: new Date()
-      // },
-      // {
-      //   spotId: 4, // Replace with actual spot IDs
-      //   url: '/Andromeda4.png',
-      //   preview: false, // or false depending on your need
-      //   createdAt: new Date(),
-      //   updatedAt: new Date()
-      // },
-      // {
-      //   spotId: 4, // Replace with actual spot IDs
-      //   url: '/Andromeda5.png',
-      //   preview: false, // or false depending on your need
-      //   createdAt: new Date(),
-      //   updatedAt: new Date()
-      // },
+      },
+      {
+        spotId: 2, // Replace with actual spot IDs
+        url: '/MidtownPic.png',
+        preview: true, // or false depending on your need
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        spotId: 2, // Replace with actual spot IDs
+        url: '/SagittariusA2.png',
+        preview: false, // or false depending on your need
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        spotId: 2, // Replace with actual spot IDs
+        url: '/SagittariusA3.png',
+        preview: false, // or false depending on your need
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        spotId: 2, // Replace with actual spot IDs
+        url: '/SagittariusA4.png',
+        preview: false, // or false depending on your need
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        spotId: 2, // Replace with actual spot IDs
+        url: '/SagittariusA5.png',
+        preview: false, // or false depending on your need
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        spotId: 3, // Replace with actual spot IDs
+        url: '/WestuPic.png',
+        preview: true, // or false depending on your need
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        spotId: 3, // Replace with actual spot IDs
+        url: '/Orion2.png',
+        preview: false, // or false depending on your need
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        spotId: 3, // Replace with actual spot IDs
+        url: '/Orion3.png',
+        preview: false, // or false depending on your need
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        spotId: 3, // Replace with actual spot IDs
+        url: '/Orion4.png',
+        preview: false, // or false depending on your need
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        spotId: 3, // Replace with actual spot IDs
+        url: '/Orion5.png',
+        preview: false, // or false depending on your need
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        spotId: 4, // Replace with actual spot IDs
+        url: '/EnergycorridorPic.png',
+        preview: true, // or false depending on your need
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        spotId: 4, // Replace with actual spot IDs
+        url: '/Andromeda2.png',
+        preview: false, // or false depending on your need
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        spotId: 4, // Replace with actual spot IDs
+        url: '/Andromeda3.png',
+        preview: false, // or false depending on your need
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        spotId: 4, // Replace with actual spot IDs
+        url: '/Andromeda4.png',
+        preview: false, // or false depending on your need
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        spotId: 4, // Replace with actual spot IDs
+        url: '/Andromeda5.png',
+        preview: false, // or false depending on your need
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
       // {
       //   spotId: 5, // Replace with actual spot IDs
       //   url: '/Pulsar.png',

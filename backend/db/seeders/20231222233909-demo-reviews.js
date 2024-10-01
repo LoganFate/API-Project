@@ -52,30 +52,30 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       },
-      {
-        userId: 6,
-        spotId: 5,
-        review: "Seeing the rhythmic pulsing of the Vela Pulsar is a unique experience. It's like a cosmic lighthouse!",
-        stars: 4,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        userId: 9,
-        spotId: 7,
-        review: "Exploring the aftermath of a supernova in the Crab Nebula was surreal. The colors and patterns are extraordinary.",
-        stars: 5,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        userId: 8,
-        spotId: 8,
-        review: "Sailing through the Horsehead Nebula's dark clouds was a dream come true. The silhouette against the gas clouds is striking.",
-        stars: 4,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      }
+      // {
+      //   userId: 6,
+      //   spotId: 5,
+      //   review: "Seeing the rhythmic pulsing of the Vela Pulsar is a unique experience. It's like a cosmic lighthouse!",
+      //   stars: 4,
+      //   createdAt: new Date(),
+      //   updatedAt: new Date()
+      // },
+      // {
+      //   userId: 9,
+      //   spotId: 7,
+      //   review: "Exploring the aftermath of a supernova in the Crab Nebula was surreal. The colors and patterns are extraordinary.",
+      //   stars: 5,
+      //   createdAt: new Date(),
+      //   updatedAt: new Date()
+      // },
+      // {
+      //   userId: 8,
+      //   spotId: 8,
+      //   review: "Sailing through the Horsehead Nebula's dark clouds was a dream come true. The silhouette against the gas clouds is striking.",
+      //   stars: 4,
+      //   createdAt: new Date(),
+      //   updatedAt: new Date()
+      // }
     ], { validate: true });
   },
 

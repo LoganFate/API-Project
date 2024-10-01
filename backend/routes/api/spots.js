@@ -98,7 +98,7 @@ router.get('/', async (req, res) => {
                 lng: spotJson.lng,
                 name: spotJson.name,
                 description: spotJson.description,
-                price: parseFloat(spotJson.price),
+                price: spotJson.price,
                 createdAt: spotJson.createdAt,
                 updatedAt: spotJson.updatedAt,
                 avgRating: spotJson.avgRating !== null ? parseFloat(spotJson.avgRating) : null, // avgRating here

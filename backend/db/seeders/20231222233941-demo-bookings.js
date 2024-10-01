@@ -42,14 +42,14 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       },
-      {
-        spotId: 5, // Replace with actual spot IDs
-        userId: 5, // Replace with actual user IDs
-        startDate: new Date(),
-        endDate: new Date(new Date().setDate(new Date().getDate() + 1)),
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
+      // {
+      //   spotId: 5, // Replace with actual spot IDs
+      //   userId: 5, // Replace with actual user IDs
+      //   startDate: new Date(),
+      //   endDate: new Date(new Date().setDate(new Date().getDate() + 1)),
+      //   createdAt: new Date(),
+      //   updatedAt: new Date()
+      // },
     ], { validate: true });
   },
 
