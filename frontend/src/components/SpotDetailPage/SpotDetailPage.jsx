@@ -118,19 +118,59 @@ const isUserNotOwner = sessionUser?.id !== spot.ownerId;
 const userHasReviewed = reviews.some(review => review.userId === sessionUser?.id);
 const showPostReviewButton = isUserLoggedIn && isUserNotOwner && !userHasReviewed;
 
+const eventTitlesAndDescriptions = [
+    {
+      title: "Karaoke Night",
+      description: "Every Friday and Saturday Night starting at 9:30pm",
+    },
+    {
+      title: "Baltimore Ravens Watch Party",
+      description: "(Every Gameday) Watch Party Headquarters for: Ravens Roost 610 - $20 Gameday Beer Buckets - Featured Drinks",
+    },
+    {
+      title: "Cougar Run Club",
+      description: "Every Tuesday 7pm",
+    },
+    {
+      title: "Yappy Hour",
+      description: "October 12th 5-7:30pm | October 19th 7:30-9:30pm",
+    },
+  ];
+
 return (
   <div className="spot-detail">
+
       <h1>{spot.name}</h1>
-      <p>Location: {spot.city}, {spot.state}, {spot.country}</p>
-      <div className="spot-images">
-          <img src={mainImageUrl} alt="Main" className="main-image" />
-          <div className="small-images">
-              {otherImages.map((imgUrl, index) => (
-                  <img key={index} src={imgUrl} alt={`Additional ${index}`} />
-              ))}
-          </div>
+
+      <div className="text-container">
+          <p className="location-address">
+            Location: {spot.city}, {spot.state}
+          </p>
       </div>
-      <p>Hosted by {spot.Owner?.firstName} {spot.Owner?.lastName}</p>
+      <div className="spot-images">
+          {/* Main Image */}
+          <img src={mainImageUrl} alt="Main" className="main-image" />
+
+          {/* Secondary Images (Event images with descriptions stacked vertically) */}
+          <div className="small-images">
+          {otherImages.map((imgUrl, index) => (
+              <div key={index} className="event-block">
+                  {/* Small Image */}
+                  <img src={imgUrl} alt={eventTitlesAndDescriptions[index].title} className="event-image" />
+
+                  {/* Custom Title and Description */}
+                  <div className="text-container">
+                  <div className="event-description">
+                      <h3>{eventTitlesAndDescriptions[index].title}</h3>
+                      <p>{eventTitlesAndDescriptions[index].description}</p>
+                  </div>
+              </div>
+              </div>
+          ))}
+      </div>
+  </div>
+
+      {/* <p>Hosted by {spot.Owner?.firstName} {spot.Owner?.lastName}</p>
       <p>{spot.description}</p>
       <div className="callout-info">
           <p>Price: ${spot.price} / night</p>
@@ -167,6 +207,8 @@ return (
                 />
             )}
         </div>
+    ); */}
+    </div>
     );
 };
 

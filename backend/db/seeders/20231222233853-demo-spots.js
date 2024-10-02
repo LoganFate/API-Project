@@ -19,7 +19,7 @@ module.exports = {
         country: 'Local Group',
         lat: 54.777,
         lng: -57.492,
-        name: 'Heights',
+        name: 'The Heights',
         description: 'Experience the awe-inspiring sight of a supernova in real-time, a rare and illuminating cosmic event offering spectacular views of stellar life cycles.',
         price:'Heights',
         createdAt: new Date(),

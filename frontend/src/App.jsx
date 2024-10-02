@@ -24,7 +24,7 @@ function Layout() {
         <NavLink to="/">
           <img src="/CTlogo.PNG" alt="Logo" className="logo" />
         </NavLink>
-        <p id='CosTitle'>Locations</p>
+        <p id='CosTitle'>Upcoming Events</p>
         <Navigation isLoaded={isLoaded} />
       </header>
       {isLoaded && <Outlet />}

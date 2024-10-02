@@ -19,28 +19,28 @@ module.exports = {
       },
       {
         spotId: 1, // Replace with actual spot IDs
-        url: '/SuperNova2.png',
+        url: '/KaraokePic.png',
         preview: false, // or false depending on your need
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         spotId: 1, // Replace with actual spot IDs
-        url: '/SuperNova3.png',
+        url: '/RavensPic.jpg',
         preview: false, // or false depending on your need
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         spotId: 1, // Replace with actual spot IDs
-        url: '/SuperNova4.png',
+        url: '/RunclubPic.jpg',
         preview: false, // or false depending on your need
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         spotId: 1, // Replace with actual spot IDs
-        url: '/SuperNova5.png',
+        url: '/YappyHeights.png',
         preview: false, // or false depending on your need
         createdAt: new Date(),
         updatedAt: new Date()

@@ -7,44 +7,88 @@
 
   .spot-detail {
     display: flex;
+    justify-content: center;
     flex-direction: column;
     color: white;
     font-size: 18px;
+    font-style: italic;
+  }
+
+  .location-address {
+    text-align: center; /* Centers the text */
+    margin: 0 auto; /* Adds some space below the location */
+    font-size: 18px; /* Adjusts the font size as needed */
+    color: rgb(7, 7, 7); /* Assuming you want white text */
+    font-weight: bold;
   }
 
   .spot-images {
     display: flex;
-    gap: 15px; /* Space between main image and small images container */
+    flex-direction: column; /* Stack main image and smaller images vertically */
+    align-items: center; /* Center the main image horizontally */
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .event-description {
+    color: black;
+  }
+
+  .text-container {
+    background-color: white; /* White background */
+    color: black; /* Black text */
+    padding: 20px; /* Space inside the container */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+     /* Space below each text container */
+    display: inline-block;
+    width: fit-content;
+    text-align: center;
+    margin: 0 auto;
+    margin-bottom: 20px;
   }
 
   /* Style for the main image */
   .main-image {
-    width: 50%; /* Adjust as needed */
+    width: 100%;
+    max-width: 450px; /* Limit the maximum width of the main image */
+    height: auto;
     object-fit: cover;
     border-radius: 8px;
-    max-height: 500px;
-    border-color: whitesmoke;
-    border: solid;
+    border: 2px solid whitesmoke;
+    margin-bottom: 20px; /* Space below the main image */
   }
 
-  /* Style for the smaller images container */
-.small-images {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Two columns */
-  grid-gap: 10px;
-  width: 50%; /* Adjust as needed */
-}
-
-  /* Style for each smaller image */
-  .small-images img {
+  /* Container for each event (small image and description) */
+  .small-images {
+    display: flex;
+    flex-direction: column; /* Stack the small images vertically */
     width: 100%;
-    aspect-ratio: 1; /* Keep the images square */
-    object-fit: cover; /* Cover the space without stretching */
-    border-radius: 5px;
-    border: solid;
-    border-color: whitesmoke;
+    max-width: 600px; /* Limit the width for consistency */
+    gap: 20px; /* Space between event blocks */
+    margin-top: 20px;
   }
 
+  /* Style for each event block (image and description) */
+  .event-block {
+    display: flex;
+    align-items: flex-start; /* Align image and text at the top */
+    gap: 20px; /* Space between the image and description */
+  }
+
+  /* Style for each smaller image (event image) */
+  .small-images img {
+    width: 350px; /* Set a fixed width for the event images */
+    height: 350px; /* Set a fixed height to make the images uniform */
+    object-fit: cover;
+    border-radius: 5px;
+    border: 1px solid whitesmoke;
+  }
+
+  /* Style for the event description */
+  .event-description {
+    flex-grow: 1; /* Let the description take up the remaining space */
+  }
   /* Style for spot information and reviews on the side */
   .callout-info, .reviews-section {
     background: whitesmoke;
@@ -83,21 +127,16 @@
 
   /* Media query for responsive adjustments */
   @media (max-width: 768px) {
-    .spot-detail {
-      flex-direction: column;
-    }
-
-    .image-container {
-      flex-direction: column;
-    }
-
     .main-image {
       width: 100%;
     }
 
     .small-images {
-      grid-template-columns: repeat(2, 1fr); /* Adjust for smaller screens */
       width: 100%;
+    }
+
+    .small-images img {
+      width: 100%; /* Ensure each small image takes up full width on small screens */
     }
   }
 

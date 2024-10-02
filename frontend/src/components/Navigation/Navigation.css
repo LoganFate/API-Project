@@ -78,12 +78,13 @@ li {
 
 #CosTitle {
 	color: black;
-	font-size: 54px;
+	font-size: 48px;
 	border-color: white;
 	border: solid;
 	border-radius: 12%;
 	padding: 7px;
 	font-family: 'Poppins', sans-serif;
+	font-style: italic;
 	background-color: white;
 
 }
