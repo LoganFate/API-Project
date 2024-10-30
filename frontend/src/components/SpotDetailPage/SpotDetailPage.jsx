@@ -29,11 +29,14 @@ const SpotDetailPage = () => {
             { title: "Karaoke Night", description: "Every Friday and Saturday Night starting at 9:30pm" },
             { title: "Baltimore Ravens Watch Party", description: "(Every Gameday) Watch Party Headquarters for: Ravens Roost 610 - $20 Gameday Beer Buckets - Featured Drinks" },
             { title: "Cougar Run Club", description: "Every Tuesday 7pm" },
+            { title: "Mister Hotter Than Hell", description: "Calling all Hotties! Get selected to go to the finals and have a chance to be in a calendar where all proceeds go to cerebral palsy"}
+
         ],
         2: [
             { title: "Karaoke Night", description: "Every Friday and Saturday Night starting at 9:30pm" },
             { title: "Buffalo Bills Watch Party", description: "(Every Gameday) Watch Party Headquarters for Houston Bills Backers - $20 Gameday Beer Buckets - Featured Drinks - Sahlen’s Hotdogs"},
             { title: "Virginia Tech Watch Party", description: "$20 Gameday beer buckets, come watch the game with us!"},
+            { title: "Hot Ones Tasting", description: "10 wings, 10 dollars, 10 levels of HOT"}
         ],
         3: [
             { title: "Ohio State Watch Party", description: "Every Gameday - $20 Gameday Beer Buckets"},
@@ -45,7 +48,7 @@ const SpotDetailPage = () => {
             { title: "Jets Watch Party", description: "Watch Party Headquarters for Houston Jets Fans Every Game Day $20 Gameday Beer Buckets, Featured Drinks"},
             { title: "Texas A&M Watch Party", Description: "Every Gameday"},
             { title: "Live Music", description: "On the patio Fridays at 6pm!"},
-            { title: "Mister Hotter Than Hell", description: "The final round of all the winners! Winner will get their pictures on a calendar and all the proceeds go to cerebral palsy"}
+            { title: "Mister Hotter Than Hell", description: "The final round of all the previous winners! Winner will get their pictures on a calendar and all the proceeds go to cerebral palsy"}
         ]
     };
 

@@ -40,7 +40,7 @@ module.exports = {
       },
       {
         spotId: 1, // Replace with actual spot IDs
-        url: '/YappyHeights.png',
+        url: '/HtHwhiteOak.jpg',
         preview: false, // or false depending on your need
         createdAt: new Date(),
         updatedAt: new Date()
@@ -75,7 +75,7 @@ module.exports = {
       },
       {
         spotId: 2, // Replace with actual spot IDs
-        url: '/UFCpic.jpg',
+        url: '/HotOnes.jpg',
         preview: false, // or false depending on your need
         createdAt: new Date(),
         updatedAt: new Date()
@@ -108,13 +108,13 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       },
-      {
-        spotId: 3, // Replace with actual spot IDs
-        url: '/UFCpic.jpg',
-        preview:false, // or false depending on your need
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
+      // {
+      //   spotId: 3, // Replace with actual spot IDs
+      //   url: '/UFCpic.jpg',
+      //   preview:false, // or false depending on your need
+      //   createdAt: new Date(),
+      //   updatedAt: new Date()
+      // },
       {
         spotId: 4, // Replace with actual spot IDs
         url: '/EnergycorridorPic.png',
@@ -145,7 +145,7 @@ module.exports = {
       },
       {
         spotId: 4, // Replace with actual spot IDs
-        url: '/HotHellPic.jpg',
+        url: '/HtHenergy6.jpg',
         preview: false, // or false depending on your need
         createdAt: new Date(),
         updatedAt: new Date()
