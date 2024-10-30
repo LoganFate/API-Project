@@ -126,18 +126,20 @@
   }
 
   /* Media query for responsive adjustments */
-  @media (max-width: 768px) {
-    .main-image {
+  /* Responsive for small screens */
+@media (max-width: 768px) {
+  .main-image, .small-images img {
       width: 100%;
-    }
-
-    .small-images {
-      width: 100%;
-    }
-
-    .small-images img {
-      width: 100%; /* Ensure each small image takes up full width on small screens */
-    }
   }
+
+  /* Event Description styling for smaller screens */
+  .event-description {
+      text-align: center;
+  }
+
+  .text-container {
+      padding: 15px;
+  }
+}
 
   /* Additional media queries can be added for further responsive adjustments */
