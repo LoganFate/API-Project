@@ -54,28 +54,28 @@ module.exports = {
       },
       {
         spotId: 2, // Replace with actual spot IDs
-        url: '/SagittariusA2.png',
+        url: '/KaraokePic.png',
         preview: false, // or false depending on your need
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         spotId: 2, // Replace with actual spot IDs
-        url: '/SagittariusA3.png',
+        url: '/BillsPic.jpg',
         preview: false, // or false depending on your need
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         spotId: 2, // Replace with actual spot IDs
-        url: '/SagittariusA4.png',
+        url: '/VTpic.png',
         preview: false, // or false depending on your need
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         spotId: 2, // Replace with actual spot IDs
-        url: '/SagittariusA5.png',
+        url: '/UFCpic.jpg',
         preview: false, // or false depending on your need
         createdAt: new Date(),
         updatedAt: new Date()
@@ -89,29 +89,29 @@ module.exports = {
       },
       {
         spotId: 3, // Replace with actual spot IDs
-        url: '/Orion2.png',
+        url: '/OhioPic.jpg',
         preview: false, // or false depending on your need
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         spotId: 3, // Replace with actual spot IDs
-        url: '/Orion3.png',
+        url: '/MiamiPic.jpg',
         preview: false, // or false depending on your need
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         spotId: 3, // Replace with actual spot IDs
-        url: '/Orion4.png',
+        url: '/DetroitPic.jpg',
         preview: false, // or false depending on your need
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         spotId: 3, // Replace with actual spot IDs
-        url: '/Orion5.png',
-        preview: false, // or false depending on your need
+        url: '/UFCpic.jpg',
+        preview:false, // or false depending on your need
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -124,28 +124,28 @@ module.exports = {
       },
       {
         spotId: 4, // Replace with actual spot IDs
-        url: '/Andromeda2.png',
+        url: '/JetsPic.jpg',
         preview: false, // or false depending on your need
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         spotId: 4, // Replace with actual spot IDs
-        url: '/Andromeda3.png',
+        url: '/TAMpic.jpg',
         preview: false, // or false depending on your need
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         spotId: 4, // Replace with actual spot IDs
-        url: '/Andromeda4.png',
+        url: '/LiveMusicPic.png',
         preview: false, // or false depending on your need
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         spotId: 4, // Replace with actual spot IDs
-        url: '/Andromeda5.png',
+        url: '/HotHellPic.jpg',
         preview: false, // or false depending on your need
         createdAt: new Date(),
         updatedAt: new Date()
