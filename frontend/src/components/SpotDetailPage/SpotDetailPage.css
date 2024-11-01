@@ -53,7 +53,7 @@
     width: 100%;
     max-width: 450px; /* Limit the maximum width of the main image */
     height: auto;
-    object-fit: cover;
+    object-fit: contain;
     border-radius: 8px;
     border: 2px solid whitesmoke;
     margin-bottom: 20px; /* Space below the main image */
@@ -78,9 +78,10 @@
 
   /* Style for each smaller image (event image) */
   .small-images img {
-    width: 350px; /* Set a fixed width for the event images */
-    height: 350px; /* Set a fixed height to make the images uniform */
-    object-fit: cover;
+    width: 100%;
+    max-width: 350px; /* Limit width for larger screens */
+    height: auto;
+    object-fit: contain; /* Prevents images from being cropped */
     border-radius: 5px;
     border: 1px solid whitesmoke;
   }
@@ -89,6 +90,8 @@
   .event-description {
     flex-grow: 1; /* Let the description take up the remaining space */
   }
+
+
   /* Style for spot information and reviews on the side */
   .callout-info, .reviews-section {
     background: whitesmoke;
@@ -131,6 +134,7 @@
     /* Make the main image and smaller images take full width on mobile */
     .main-image, .small-images img {
         width: 100%;
+        max-width: 100%;
     }
 
     /* Center and expand text containers for mobile */

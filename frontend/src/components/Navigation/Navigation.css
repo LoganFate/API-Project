@@ -78,7 +78,7 @@ li {
 
 #CosTitle {
 	color: black;
-	font-size: 48px;
+	font-size: 38px;
 	border-color: white;
 	border: solid;
 	border-radius: 12%;
@@ -86,6 +86,11 @@ li {
 	font-family: 'Poppins', sans-serif;
 	font-style: italic;
 	background-color: white;
+	display: inline-block; /* Ensures margin: 0 auto works as expected */
+    margin: 0 auto; /* Centers the element horizontally */
+    text-align: center;
+	width: fit-content; /* Shrinks box to fit content */
+    max-width: 50%;
 
 }
 
