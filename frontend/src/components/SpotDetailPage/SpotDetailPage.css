@@ -127,19 +127,31 @@
 
   /* Media query for responsive adjustments */
   /* Responsive for small screens */
-@media (max-width: 768px) {
-  .main-image, .small-images img {
-      width: 100%;
-  }
+  @media (max-width: 768px) {
+    /* Make the main image and smaller images take full width on mobile */
+    .main-image, .small-images img {
+        width: 100%;
+    }
 
-  /* Event Description styling for smaller screens */
-  .event-description {
-      text-align: center;
-  }
+    /* Center and expand text containers for mobile */
+    .text-container {
+        padding: 15px;
+        width: 90%; /* Set a wider width for mobile to avoid narrow text boxes */
+        max-width: 600px; /* Limit the width so it doesn’t get too wide */
+        margin: 10px auto; /* Center-align on mobile */
+    }
 
-  .text-container {
-      padding: 15px;
+    /* Center the event descriptions */
+    .event-description {
+        text-align: center;
+    }
+
+    /* Event block adjustments to stack images and text more naturally */
+    .event-block {
+        display: flex;
+        flex-direction: column; /* Stack image and description vertically */
+        align-items: center; /* Center content on mobile */
+    }
   }
-}
 
   /* Additional media queries can be added for further responsive adjustments */

@@ -72,24 +72,35 @@
   /* Responsive layout adjustments */
   @media (max-width: 768px) {
     .spot-list {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Reduced minimum width on smaller screens */
-        padding: 10px; /* Reduced padding on smaller screens */
+        grid-template-columns: 1fr; /* Single-column layout on mobile */
+        padding: 5px; /* Tighten padding on mobile */
     }
 
-    /* Center-align header content on mobile */
+    /* Center header content and reduce padding */
     header {
         flex-direction: column;
-        align-items: center;
-        text-align: center;
-        padding: 10px;
+        padding: 5px;
     }
 
-    /* Adjust font size for mobile */
+    /* Adjust font sizes for mobile readability */
     #spot-location, .spot-rating {
-        font-size: 18px;
+        font-size: 16px;
     }
 
     .spot-price {
         font-size: 14px;
+    }
+
+    /* Spot tile adjustments for mobile */
+    .spot-tile {
+        margin-bottom: 10px;
+        padding: 10px;
+    }
+
+    /* Adjust the spot thumbnail image on mobile */
+    .spot-thumbnail {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
     }
 }
