@@ -88,3 +88,34 @@ li {
 	background-color: white;
 
 }
+
+/* Media query for very small screens (e.g., iPhone SE, 320px wide) */
+@media (max-width: 480px) {
+    /* Further reduce logo size for very small screens */
+    .logo {
+        width: 80px;
+        height: 80px;
+    }
+
+    /* Resize CosTitle font further */
+    #CosTitle {
+        font-size: 20px;
+    }
+
+    /* Align and stack navigation items for a compact display */
+    .header-ul {
+        gap: 10px;
+    }
+
+    /* Reduce button size */
+    button {
+        width: 50px;
+        height: 40px;
+    }
+
+    /* Profile dropdown adjustments for very small screens */
+    .profile-dropdown {
+        width: 70px;
+        font-size: 12px; /* Adjust font size to fit */
+    }
+}

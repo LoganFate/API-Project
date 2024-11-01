@@ -19,6 +19,13 @@ module.exports = {
       },
       {
         spotId: 1, // Replace with actual spot IDs
+        url: '/PaulTyson.jpeg',
+        preview: false, // or false depending on your need
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        spotId: 1, // Replace with actual spot IDs
         url: '/KaraokePic.png',
         preview: false, // or false depending on your need
         createdAt: new Date(),
@@ -84,6 +91,13 @@ module.exports = {
         spotId: 3, // Replace with actual spot IDs
         url: '/WestuPic.png',
         preview: true, // or false depending on your need
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        spotId: 3, // Replace with actual spot IDs
+        url: '/PaulTyson.jpeg',
+        preview: false, // or false depending on your need
         createdAt: new Date(),
         updatedAt: new Date()
       },

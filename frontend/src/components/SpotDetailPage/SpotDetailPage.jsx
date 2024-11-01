@@ -26,6 +26,7 @@ const SpotDetailPage = () => {
 
     const eventsBySpotId = {
         1: [
+            { title: "Paul vs Tyson", description: "Jake Paul vs Mike Tyson in the boxing ring 7pm November 15th! Available to watch at our Heights and West U locations."},
             { title: "Karaoke Night", description: "Every Friday and Saturday Night starting at 9:30pm" },
             { title: "Baltimore Ravens Watch Party", description: "(Every Gameday) Watch Party Headquarters for: Ravens Roost 610 - $20 Gameday Beer Buckets - Featured Drinks" },
             { title: "Cougar Run Club", description: "Every Tuesday 7pm" },
@@ -39,6 +40,7 @@ const SpotDetailPage = () => {
             { title: "Hot Ones Tasting", description: "10 wings, 10 dollars, 10 levels of HOT"}
         ],
         3: [
+            { title: "Paul vs Tyson", description: "Jake Paul vs Mike Tyson in the boxing ring 7pm November 15th! Available to watch at our Heights and West U locations."},
             { title: "Ohio State Watch Party", description: "Every Gameday - $20 Gameday Beer Buckets"},
             { title: "Miami Dolphins Watch Party", description: "Every Game Day $20 Gameday Beer Buckets, Featured Drinks"},
             { title: "Detroit Lions Watch Party", description: "Nov 10th, $5 & $7 shots"},
